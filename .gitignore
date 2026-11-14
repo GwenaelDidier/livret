@@ -1,0 +1,22 @@
+# Dependencies
+**/node_modules/
+
+# Build output and caches
+**/dist/
+**/coverage/
+**/.angular/cache/
+
+# Local databases and logs
+backend/data/*.sqlite
+backend/data/*.sqlite-*
+*.log
+npm-debug.log*
+
+# Local environment and editor files
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

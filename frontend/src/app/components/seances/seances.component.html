@@ -1,0 +1,165 @@
+<main class="seances-page">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">PRÉPARATION PÉDAGOGIQUE</p>
+      <h1>Compétences &amp; séances</h1>
+      <p class="intro">Retrouvez les compétences par domaine, préparez une séance et exportez sa fiche en PDF.</p>
+    </div>
+    <div class="count-pill"><mat-icon>menu_book</mat-icon>{{ seances.length }} séance{{ seances.length > 1 ? 's' : '' }}</div>
+  </header>
+
+  <aside class="template-note">
+    <mat-icon>info_outline</mat-icon>
+    <span>La fiche reprend les rubriques usuelles d’une préparation de séance. Il n’existe pas de modèle national unique : adaptez-la aux consignes de votre école ou académie.</span>
+  </aside>
+
+  <div *ngIf="loading" class="loading-state">
+    <mat-progress-spinner mode="indeterminate" diameter="36"></mat-progress-spinner>
+    <span>Chargement des compétences et des séances…</span>
+  </div>
+
+  <div *ngIf="loadError && !loading" class="error-state">
+    <mat-icon>error_outline</mat-icon>
+    <span>Le contenu n’a pas pu être chargé.</span>
+    <button type="button" class="secondary-button" (click)="load()">Réessayer</button>
+  </div>
+
+  <div *ngIf="!loading && !loadError && domaines.length === 0" class="empty-state">
+    Aucun domaine ni aucune compétence ne sont disponibles.
+  </div>
+
+  <section *ngIf="!loading && !loadError && domaines.length" class="domain-section">
+    <mat-tab-group class="domain-tabs" mat-stretch-tabs="false" [selectedIndex]="selectedDomainIndex" (selectedIndexChange)="selectedDomainIndex = $event" animationDuration="180ms">
+      <mat-tab *ngFor="let domaine of domaines">
+        <ng-template mat-tab-label>
+          <span class="tab-label">
+            <span class="tab-name">{{ domaine.nom }}</span>
+            <span class="tab-count">{{ competenceCount(domaine) }}</span>
+          </span>
+        </ng-template>
+        <ng-template matTabContent>
+          <article class="domain-card">
+            <header class="domain-header">
+              <div class="domain-icon"><mat-icon>auto_stories</mat-icon></div>
+              <div>
+                <h2>{{ domaine.nom }}</h2>
+                <p *ngIf="domaine.description">{{ domaine.description }}</p>
+                <p class="domain-meta">{{ competenceCount(domaine) }} compétences · {{ sessionCount(domaine) }} séances préparées</p>
+              </div>
+            </header>
+
+            <div *ngIf="competenceList(domaine.competences).length" class="competence-list">
+              <ng-container *ngFor="let competence of competenceList(domaine.competences)">
+                <ng-container *ngTemplateOutlet="competenceBlock; context: { competence: competence }"></ng-container>
+              </ng-container>
+            </div>
+
+            <div *ngFor="let sousdomaine of domaine.sousdomaines" class="subdomain">
+              <h3>{{ sousdomaine.nom }}</h3>
+              <div class="competence-list">
+                <ng-container *ngFor="let competence of competenceList(sousdomaine.competences)">
+                  <ng-container *ngTemplateOutlet="competenceBlock; context: { competence: competence }"></ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </article>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </section>
+
+  <footer *ngIf="!loading && !loadError && domaines.length" class="illustration-credit">
+    Illustrations : OpenMoji contributors, sous licence
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.
+    <a href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">Source OpenMoji</a>.
+  </footer>
+</main>
+
+<ng-template #competenceBlock let-competence="competence">
+  <article class="competence-card">
+    <div class="competence-heading">
+      <div class="competence-illustration" *ngIf="illustrationFor(competence) as illustration">
+        <img [src]="illustration" alt="" loading="lazy">
+      </div>
+      <div class="competence-copy">
+        <span class="competence-code">{{ competence.code }}</span>
+        <span class="competence-title">{{ competence.libelle }}</span>
+      </div>
+      <button *ngIf="activeCompetenceId !== competence.id" type="button" class="add-button" (click)="startCreate(competence.id)">
+        <mat-icon>add</mat-icon><span>Ajouter une séance</span>
+      </button>
+    </div>
+
+    <div *ngIf="sessionsFor(competence.id).length" class="session-list">
+      <article *ngFor="let seance of sessionsFor(competence.id)" class="session-row">
+        <div class="session-icon"><mat-icon>event_note</mat-icon></div>
+        <div class="session-summary">
+          <strong>{{ seance.titre }}</strong>
+          <span>{{ seance.dateSeance || 'Date à préciser' }}<ng-container *ngIf="seance.duree"> · {{ seance.duree }}</ng-container></span>
+        </div>
+        <div class="session-actions">
+          <button type="button" (click)="download(seance)" title="Télécharger la fiche PDF"><mat-icon>picture_as_pdf</mat-icon><span>PDF</span></button>
+          <button type="button" (click)="startEdit(seance)" title="Modifier la séance"><mat-icon>edit</mat-icon></button>
+          <button type="button" (click)="delete(seance)" title="Supprimer la séance"><mat-icon>delete_outline</mat-icon></button>
+        </div>
+      </article>
+    </div>
+    <p *ngIf="sessionsFor(competence.id).length === 0 && activeCompetenceId !== competence.id" class="no-session">Aucune séance associée pour le moment.</p>
+
+    <form *ngIf="activeCompetenceId === competence.id" class="session-form" (ngSubmit)="save()">
+      <div class="form-heading">
+        <div>
+          <p class="eyebrow">{{ editingId ? 'MODIFICATION' : 'NOUVELLE PRÉPARATION' }}</p>
+          <h4>{{ editingId ? 'Modifier la séance' : 'Préparer une séance' }}</h4>
+        </div>
+        <span class="form-competence">{{ competence.code }} · {{ competence.libelle }}</span>
+      </div>
+
+      <div class="form-grid">
+        <label class="field wide">
+          <span>Titre de la séance <b>*</b></span>
+          <input name="titre" [(ngModel)]="form.titre" required maxlength="180" placeholder="Ex. Trier des objets selon leur forme">
+        </label>
+        <label class="field">
+          <span>Date</span>
+          <input name="dateSeance" type="date" [(ngModel)]="form.dateSeance">
+        </label>
+        <label class="field">
+          <span>Durée</span>
+          <input name="duree" [(ngModel)]="form.duree" placeholder="Ex. 30 min">
+        </label>
+        <label class="field wide">
+          <span>Objectif d’apprentissage</span>
+          <textarea name="objectif" [(ngModel)]="form.objectif" rows="2" placeholder="À l’issue de la séance, l’élève pourra…"></textarea>
+        </label>
+        <label class="field wide">
+          <span>Prérequis</span>
+          <textarea name="prerequis" [(ngModel)]="form.prerequis" rows="2" placeholder="Connaissances ou savoir-faire nécessaires"></textarea>
+        </label>
+        <label class="field wide">
+          <span>Matériel</span>
+          <textarea name="materiel" [(ngModel)]="form.materiel" rows="2" placeholder="Matériel et supports nécessaires (facultatif)"></textarea>
+        </label>
+        <label class="field wide">
+          <span>Déroulement de la séance</span>
+          <textarea name="deroulement" [(ngModel)]="form.deroulement" rows="5" placeholder="Étapes, consignes, rôle de l’enseignant et activité des élèves"></textarea>
+        </label>
+        <label class="field">
+          <span>Différenciation / adaptations</span>
+          <textarea name="differenciation" [(ngModel)]="form.differenciation" rows="3" placeholder="Aides, adaptations ou prolongements"></textarea>
+        </label>
+        <label class="field">
+          <span>Évaluation / critères de réussite</span>
+          <textarea name="evaluation" [(ngModel)]="form.evaluation" rows="3" placeholder="Comment observer la réussite ?"></textarea>
+        </label>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="secondary-button" (click)="cancelEdit()">Annuler</button>
+        <button type="submit" class="primary-button" [disabled]="saving || !form.titre.trim()">
+          <mat-icon>{{ editingId ? 'save' : 'add' }}</mat-icon>
+          {{ saving ? 'Enregistrement…' : editingId ? 'Enregistrer les modifications' : 'Enregistrer la séance' }}
+        </button>
+      </div>
+    </form>
+  </article>
+</ng-template>

@@ -1,0 +1,129 @@
+.eleves-container {
+  padding: 24px 32px;
+  height: 100%;
+  overflow-y: auto;
+
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    h1 { margin: 0; font-size: 1.8rem; font-weight: 500; }
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 60px 0;
+    color: #999;
+    mat-icon { font-size: 56px; width: 56px; height: 56px; }
+  }
+
+  .niveaux-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .niveau-section {
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    overflow: hidden;
+    &.niveau-PS { border-color: #90CAF9; }
+    &.niveau-MS { border-color: #FFCC80; }
+    &.niveau-GS { border-color: #A5D6A7; }
+    &.niveau-none { border-color: #ddd; }
+  }
+
+  .niveau-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    gap: 12px;
+
+    .niveau-PS & { background: #E3F2FD; }
+    .niveau-MS & { background: #FFF8E1; }
+    .niveau-GS & { background: #E8F5E9; }
+    .niveau-none & { background: #F5F5F5; }
+
+    .niveau-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .niveau-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      .niveau-PS & { background: #1565C0; color: #fff; }
+      .niveau-MS & { background: #E65100; color: #fff; }
+      .niveau-GS & { background: #2E7D32; color: #fff; }
+      .niveau-none & { background: #9E9E9E; color: #fff; }
+    }
+
+    .niveau-count { font-size: 1rem; font-weight: 500; color: #555; }
+  }
+
+  .empty-niveau {
+    padding: 12px 20px;
+    color: #aaa;
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  .eleves-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(0,0,0,0.05);
+  }
+
+  .eleve-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: #fff;
+    transition: background 0.15s;
+    &:hover { background: #fafafa; }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+      .niveau-PS & { background: #BBDEFB; color: #0D47A1; }
+      .niveau-MS & { background: #FFE0B2; color: #BF360C; }
+      .niveau-GS & { background: #C8E6C9; color: #1B5E20; }
+    }
+
+    .avatar-none { background: #EEE; color: #888; }
+
+    .eleve-info {
+      flex: 1;
+      .eleve-nom { font-weight: 500; font-size: 0.95rem; }
+    }
+  }
+}

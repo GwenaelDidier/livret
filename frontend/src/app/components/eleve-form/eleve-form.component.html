@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>
+  <mat-icon>{{ isEdit ? 'edit' : 'person_add' }}</mat-icon>
+  {{ isEdit ? 'Modifier l\'élève' : 'Ajouter un élève' }}
+</h2>
+
+<mat-dialog-content>
+  <div class="form-fields">
+    <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput [(ngModel)]="nom" placeholder="Dupont" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Prénom</mat-label>
+      <input matInput [(ngModel)]="prenom" placeholder="Alice" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Niveau</mat-label>
+      <mat-select [(ngModel)]="classe">
+        <mat-option value="">— Non défini —</mat-option>
+        <mat-option *ngFor="let n of niveaux" [value]="n">{{ n }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Annuler</button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="saving || !nom || !prenom">
+    {{ saving ? 'Enregistrement...' : (isEdit ? 'Enregistrer' : 'Ajouter') }}
+  </button>
+</mat-dialog-actions>

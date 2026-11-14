@@ -1,0 +1,34 @@
+<div class="app-layout">
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <mat-icon>school</mat-icon>
+      <span>Livret</span>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/accueil" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+        <mat-icon matListItemIcon class="icon-amber">home</mat-icon>
+        <span matListItemTitle>Accueil</span>
+      </a>
+      <a mat-list-item routerLink="/grille" routerLinkActive="active-link">
+        <mat-icon matListItemIcon class="icon-blue">grid_on</mat-icon>
+        <span matListItemTitle>Grille d'évaluation</span>
+      </a>
+      <a mat-list-item routerLink="/seances" routerLinkActive="active-link">
+        <mat-icon matListItemIcon class="icon-amber">event_note</mat-icon>
+        <span matListItemTitle>Compétences &amp; séances</span>
+      </a>
+      <a mat-list-item routerLink="/eleves" routerLinkActive="active-link">
+        <mat-icon matListItemIcon class="icon-green">people</mat-icon>
+        <span matListItemTitle>Élèves</span>
+      </a>
+      <a mat-list-item routerLink="/livrets" routerLinkActive="active-link">
+        <mat-icon matListItemIcon class="icon-purple">menu_book</mat-icon>
+        <span matListItemTitle>Livrets</span>
+      </a>
+    </mat-nav-list>
+  </nav>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

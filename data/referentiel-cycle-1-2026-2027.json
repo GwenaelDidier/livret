@@ -1,0 +1,717 @@
+{
+  "referentiel": {
+    "id": "fr-cycle-1-2026-2027",
+    "titre": "Référentiel pédagogique du cycle 1 – école maternelle",
+    "annee_scolaire": "2026-2027",
+    "cycle": 1,
+    "version": "0.1.0",
+    "statut": "base_structuree_a_verifier",
+    "langue": "fr-FR",
+    "source_principale": {
+      "organisme": "Ministère de l'Éducation nationale – Éduscol",
+      "document": "Programme d’enseignement de l’école maternelle – version consolidée",
+      "version_document": "Juillet 2026",
+      "url": "https://eduscol.education.gouv.fr/sites/default/files/document/programme-cycle-1-consolide-127565.pdf",
+      "textes": [
+        {
+          "reference": "BO n° 41 du 31 octobre 2024",
+          "portee": [
+            "langage oral et écrit",
+            "premiers outils mathématiques"
+          ]
+        },
+        {
+          "reference": "BO n° 19 du 7 mai 2026",
+          "portee": [
+            "activités physiques",
+            "activités artistiques",
+            "temps et espace",
+            "vivant, matière et objets"
+          ]
+        }
+      ]
+    },
+    "regles_de_lecture": {
+      "paliers_officiels": [
+        {
+          "id": "avant_4_ans",
+          "libelle": "À aborder avant 4 ans",
+          "niveau_indicatif": [
+            "PS"
+          ]
+        },
+        {
+          "id": "a_partir_4_ans",
+          "libelle": "À partir de 4 ans ou dès que les apprentissages précédents ont pu être observés",
+          "niveau_indicatif": [
+            "MS"
+          ]
+        },
+        {
+          "id": "a_partir_5_ans",
+          "libelle": "À partir de 5 ans ou dès que les apprentissages précédents ont pu être observés",
+          "niveau_indicatif": [
+            "GS"
+          ]
+        }
+      ],
+      "avertissement": "Les correspondances PS/MS/GS sont indicatives. Le programme officiel raisonne par âge et par acquis observés, pas par affectation rigide à une classe.",
+      "nature_des_entrees": "Les formulations ci-dessous sont des synthèses pédagogiques des objectifs du programme, et non des citations intégrales. Les exemples de réussite ne sont pas exhaustifs."
+    }
+  },
+  "domaines": [
+    {
+      "id": "D1",
+      "nom_officiel": "Le développement et la structuration du langage oral et écrit",
+      "source": {
+        "bo": "BO n° 41 du 31 octobre 2024",
+        "pages_document": "6-20"
+      },
+      "thematiques": [
+        {
+          "id": "D1-T1",
+          "nom": "Enrichir son vocabulaire",
+          "objectifs": {
+            "avant_4_ans": [
+              "Comprendre, mémoriser et réemployer les mots travaillés en classe.",
+              "Comprendre et utiliser le vocabulaire de la vie familiale, de la classe, des relations et des albums.",
+              "Commencer à organiser les mots par catégories et réseaux."
+            ],
+            "a_partir_4_ans": [
+              "Réemployer les corpus lexicaux enseignés et enrichir le vocabulaire de l'environnement, des projets et des récits.",
+              "Organiser les mots en catégories et réseaux, repérer des intrus et des relations de sens.",
+              "S'appuyer sur des mots connus pour comprendre des mots nouveaux."
+            ],
+            "a_partir_5_ans": [
+              "Mémoriser et réemployer des corpus lexicaux plus étendus.",
+              "Comprendre et utiliser un vocabulaire plus précis, notamment celui des émotions, des sentiments et des états mentaux.",
+              "Approfondir les relations entre les mots et leur sens."
+            ]
+          }
+        },
+        {
+          "id": "D1-T2",
+          "nom": "Développer sa syntaxe et produire des énoncés oraux",
+          "objectifs": {
+            "avant_4_ans": [
+              "Comprendre des consignes et des énoncés liés aux situations vécues.",
+              "Produire des énoncés de plus en plus compréhensibles pour demander, raconter ou commenter.",
+              "Commencer à assembler des mots pour exprimer une idée."
+            ],
+            "a_partir_4_ans": [
+              "Produire des phrases plus développées et mieux organisées.",
+              "Utiliser des formes syntaxiques variées dans les échanges et les récits.",
+              "Reformuler et préciser son propos avec l'aide de l'enseignant."
+            ],
+            "a_partir_5_ans": [
+              "Construire des énoncés complexes et cohérents.",
+              "Employer des connecteurs et des temps verbaux adaptés pour raconter, expliquer et décrire.",
+              "Ajuster son discours à l'interlocuteur et à la situation."
+            ]
+          }
+        },
+        {
+          "id": "D1-T3",
+          "nom": "Articuler distinctement et acquérir une conscience phonologique",
+          "objectifs": {
+            "avant_4_ans": [
+              "Écouter et discriminer des sons familiers et des sons de la langue.",
+              "Scander les syllabes de mots familiers.",
+              "Reproduire des sons et des comptines en portant attention à l'articulation."
+            ],
+            "a_partir_4_ans": [
+              "Discriminer et localiser des phonèmes dans une suite orale.",
+              "Manipuler les syllabes par ajout, suppression, permutation ou fusion.",
+              "Développer la précision articulatoire et la mémoire auditive."
+            ],
+            "a_partir_5_ans": [
+              "Repérer et produire des rimes et des assonances.",
+              "Manipuler les syllabes et commencer à manipuler des phonèmes.",
+              "Identifier et localiser des sons dans les mots."
+            ]
+          }
+        },
+        {
+          "id": "D1-T4",
+          "nom": "Découvrir les supports de l’écrit et leurs fonctions",
+          "objectifs": {
+            "avant_4_ans": [
+              "Découvrir les livres et différents écrits de l'environnement scolaire.",
+              "Comprendre qu'un écrit porte un message et peut servir dans une situation donnée."
+            ],
+            "a_partir_4_ans": [
+              "Reconnaître, nommer et identifier la fonction d'écrits courants.",
+              "Choisir des écrits et outils fonctionnels pour s'organiser et communiquer."
+            ],
+            "a_partir_5_ans": [
+              "Différencier des types d'écrits et les relier à un projet de lecture ou d'écriture.",
+              "Repérer des éléments de structure et de mise en page des écrits rencontrés."
+            ]
+          }
+        },
+        {
+          "id": "D1-T5",
+          "nom": "Comprendre des textes lus par le professeur",
+          "objectifs": {
+            "avant_4_ans": [
+              "Identifier et nommer des personnages à partir du récit et des illustrations.",
+              "Comprendre des histoires proches de l'expérience quotidienne.",
+              "Commencer à relier des épisodes ou des albums mettant en scène un même personnage."
+            ],
+            "a_partir_4_ans": [
+              "Comprendre les personnages, les lieux et les principaux événements.",
+              "Restituer des éléments d'une histoire et établir des liens entre épisodes."
+            ],
+            "a_partir_5_ans": [
+              "Comprendre les intentions des personnages et les relations causales.",
+              "Reformuler, interpréter et raconter un récit en respectant sa cohérence."
+            ]
+          }
+        },
+        {
+          "id": "D1-T6",
+          "nom": "Connaître le nom et le son des lettres",
+          "objectifs": {
+            "avant_4_ans": [
+              "Reconnaître quelques lettres de son prénom, notamment en capitales."
+            ],
+            "a_partir_4_ans": [
+              "Nommer les lettres de son prénom et quelques lettres de mots connus.",
+              "Commencer à établir des correspondances entre différentes graphies.",
+              "Associer certaines lettres à des valeurs sonores connues."
+            ],
+            "a_partir_5_ans": [
+              "Connaître le nom des lettres de l'alphabet et leurs différentes graphies.",
+              "Associer les lettres à leurs valeurs sonores les plus usuelles.",
+              "Distinguer et nommer des lettres visuellement proches."
+            ]
+          }
+        },
+        {
+          "id": "D1-T7",
+          "nom": "Passer de l’oral à l’écrit et produire des écrits",
+          "objectifs": {
+            "avant_4_ans": [
+              "Comprendre que l'écrit conserve un message et que l'adulte peut écrire ce qui est dit.",
+              "Explorer des traces et des gestes qui préparent l'écriture."
+            ],
+            "a_partir_4_ans": [
+              "Participer à la dictée à l'adulte et formuler un message à écrire.",
+              "S'engager dans des essais d'écriture en s'appuyant sur des modèles et des lettres connues."
+            ],
+            "a_partir_5_ans": [
+              "Comprendre progressivement les relations entre oral et écrit.",
+              "Segmenter des énoncés oraux en mots et syllabes.",
+              "Produire des écrits courts avec l'aide de l'adulte et mobiliser des essais d'encodage."
+            ]
+          }
+        },
+        {
+          "id": "D1-T8",
+          "nom": "Préparer le geste d’écriture",
+          "objectifs": {
+            "avant_4_ans": [
+              "Développer la motricité fine et explorer des gestes graphiques variés.",
+              "Adopter progressivement une posture et une tenue d'outil adaptées."
+            ],
+            "a_partir_4_ans": [
+              "Contrôler davantage les gestes et les tracés.",
+              "S'exercer à des gestes préparatoires aux formes de l'écriture."
+            ],
+            "a_partir_5_ans": [
+              "Stabiliser les gestes et l'organisation spatiale nécessaires à l'écriture.",
+              "S'exercer à tracer les lettres dans des conditions adaptées."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "nom_officiel": "L’acquisition des premiers outils mathématiques",
+      "source": {
+        "bo": "BO n° 41 du 31 octobre 2024",
+        "pages_document": "35-51"
+      },
+      "thematiques": [
+        {
+          "id": "D2-T1",
+          "nom": "Découvrir les nombres – exprimer des quantités",
+          "objectifs": {
+            "avant_4_ans": [
+              "Percevoir de petites quantités et les composer ou les décomposer par manipulation.",
+              "Dénombrer de petites collections en mettant en correspondance les mots-nombres et les objets.",
+              "Comparer des collections par perception globale ou correspondance terme à terme."
+            ],
+            "a_partir_4_ans": [
+              "Dénombrer des collections de plus en plus importantes.",
+              "Constituer une collection correspondant à une quantité donnée.",
+              "Comparer, composer et décomposer des quantités en explicitant les procédures."
+            ],
+            "a_partir_5_ans": [
+              "Dénombrer et constituer des collections jusqu'à dix, voire au-delà selon les situations.",
+              "Mobiliser des compositions et décompositions pour calculer et résoudre des problèmes.",
+              "Associer différentes représentations des nombres."
+            ]
+          }
+        },
+        {
+          "id": "D2-T2",
+          "nom": "Découvrir les nombres – utiliser les nombres en position",
+          "objectifs": {
+            "avant_4_ans": [
+              "Utiliser des premiers mots-nombres dans des situations de comptage et de repérage."
+            ],
+            "a_partir_4_ans": [
+              "Utiliser les nombres pour mémoriser un rang ou une position dans une liste ou un parcours."
+            ],
+            "a_partir_5_ans": [
+              "Repérer et exprimer une position dans une suite ordonnée en utilisant les nombres ordinaux adaptés."
+            ]
+          }
+        },
+        {
+          "id": "D2-T3",
+          "nom": "Utiliser les nombres pour résoudre des problèmes",
+          "objectifs": {
+            "avant_4_ans": [
+              "Résoudre des problèmes concrets de réunion, distribution ou comparaison avec de petites quantités.",
+              "Manipuler des objets pour chercher une solution."
+            ],
+            "a_partir_4_ans": [
+              "Résoudre des problèmes portant sur des transformations simples de collections.",
+              "Choisir une procédure, la mettre en œuvre et expliquer le résultat."
+            ],
+            "a_partir_5_ans": [
+              "Résoudre des problèmes de composition, transformation, comparaison et partage.",
+              "Mobiliser des décompositions et des procédures de calcul adaptées."
+            ]
+          }
+        },
+        {
+          "id": "D2-T4",
+          "nom": "Explorer les solides et les formes planes",
+          "objectifs": {
+            "avant_4_ans": [
+              "Reconnaître, trier et classer des objets selon leur forme.",
+              "Reproduire des assemblages simples à partir d'un modèle."
+            ],
+            "a_partir_4_ans": [
+              "Reconnaître et classer des solides usuels et des formes planes simples.",
+              "Reproduire des assemblages comportant plusieurs éléments."
+            ],
+            "a_partir_5_ans": [
+              "Décrire quelques solides simples à partir de leurs propriétés perceptibles.",
+              "Trier et classer des formes planes indépendamment de leur orientation ou de leur couleur.",
+              "Composer et reproduire des assemblages plus complexes."
+            ]
+          }
+        },
+        {
+          "id": "D2-T5",
+          "nom": "Explorer des grandeurs : longueur et masse",
+          "objectifs": {
+            "avant_4_ans": [
+              "Comparer perceptivement des objets selon leur longueur ou leur masse.",
+              "Utiliser des mots usuels pour exprimer des comparaisons."
+            ],
+            "a_partir_4_ans": [
+              "Comparer et ordonner plusieurs objets selon une grandeur.",
+              "Commencer à utiliser des outils ou procédures de comparaison."
+            ],
+            "a_partir_5_ans": [
+              "Comparer des longueurs et des masses en utilisant des procédures adaptées.",
+              "Ranger des objets et verbaliser les relations de grandeur."
+            ]
+          }
+        },
+        {
+          "id": "D2-T6",
+          "nom": "Se familiariser avec les motifs organisés",
+          "objectifs": {
+            "avant_4_ans": [
+              "Repérer et poursuivre des répétitions simples dans des suites organisées."
+            ],
+            "a_partir_4_ans": [
+              "Reproduire, poursuivre et compléter des motifs répétitifs en identifiant leur régularité."
+            ],
+            "a_partir_5_ans": [
+              "Décrire, prolonger, compléter et créer des motifs organisés selon une règle."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "D3",
+      "nom_officiel": "Agir, s’exprimer, comprendre à travers les activités physiques",
+      "source": {
+        "bo": "BO n° 19 du 7 mai 2026",
+        "pages_document": "21-25"
+      },
+      "thematiques": [
+        {
+          "id": "D3-T1",
+          "nom": "Se déplacer : manipuler, courir, sauter, lancer et s’orienter",
+          "objectifs": {
+            "avant_4_ans": [
+              "Explorer différentes façons de courir, sauter, lancer et manipuler.",
+              "Adapter ses actions à des objets, des espaces et des consignes simples."
+            ],
+            "a_partir_4_ans": [
+              "Enchaîner des actions motrices et varier les déplacements.",
+              "Ajuster sa vitesse, sa trajectoire et ses gestes à une intention."
+            ],
+            "a_partir_5_ans": [
+              "Combiner plusieurs actions motrices dans un parcours ou un jeu.",
+              "Se situer et s'orienter dans des espaces variés et sur une durée définie."
+            ]
+          }
+        },
+        {
+          "id": "D3-T2",
+          "nom": "Construire des équilibres",
+          "objectifs": {
+            "avant_4_ans": [
+              "Explorer des équilibres et des déplacements inhabituels dans des environnements sécurisés."
+            ],
+            "a_partir_4_ans": [
+              "Développer de nouveaux équilibres en acceptant des pertes de repères habituels.",
+              "Comprendre et respecter les règles de sécurité."
+            ],
+            "a_partir_5_ans": [
+              "Combiner des actions pour construire des équilibres plus complexes.",
+              "Explorer de nouvelles formes de déplacement, notamment en milieu aquatique lorsque les conditions le permettent."
+            ]
+          }
+        },
+        {
+          "id": "D3-T3",
+          "nom": "S’exprimer avec son corps",
+          "objectifs": {
+            "avant_4_ans": [
+              "Explorer des actions corporelles et des gestes pour exprimer une intention.",
+              "Réagir corporellement à des musiques, rythmes ou propositions imaginaires."
+            ],
+            "a_partir_4_ans": [
+              "Composer et mémoriser de courtes séquences corporelles.",
+              "Adapter ses gestes et déplacements à une intention expressive."
+            ],
+            "a_partir_5_ans": [
+              "Enchaîner et mémoriser des actions à visée expressive ou artistique.",
+              "Présenter une production corporelle à un public."
+            ]
+          }
+        },
+        {
+          "id": "D3-T4",
+          "nom": "Collaborer, coopérer et s’opposer",
+          "objectifs": {
+            "avant_4_ans": [
+              "Participer à des jeux collectifs simples et découvrir des règles communes.",
+              "Accepter progressivement de jouer avec les autres."
+            ],
+            "a_partir_4_ans": [
+              "Coopérer pour atteindre un but commun et tenir différents rôles.",
+              "S'opposer dans des jeux aménagés en respectant les règles."
+            ],
+            "a_partir_5_ans": [
+              "Élaborer et ajuster des stratégies simples en équipe.",
+              "Respecter les rôles, les règles et les décisions collectives."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "D4",
+      "nom_officiel": "Agir, s’exprimer, comprendre à travers les activités artistiques",
+      "source": {
+        "bo": "BO n° 19 du 7 mai 2026",
+        "pages_document": "26-34"
+      },
+      "thematiques": [
+        {
+          "id": "D4-T1",
+          "nom": "Arts visuels : explorer et produire",
+          "objectifs": {
+            "avant_4_ans": [
+              "Explorer des outils, supports, matières et gestes variés.",
+              "Laisser des traces, dessiner et commencer à exprimer une intention."
+            ],
+            "a_partir_4_ans": [
+              "Choisir des outils, supports et matériaux selon un effet recherché.",
+              "Dessiner avec une intention de représentation et expérimenter des procédés plastiques."
+            ],
+            "a_partir_5_ans": [
+              "Dessiner pour représenter à partir d'un modèle ou d'un projet.",
+              "Participer à une production collective et expliquer ses choix avec un vocabulaire adapté."
+            ]
+          }
+        },
+        {
+          "id": "D4-T2",
+          "nom": "Arts visuels : s’exercer au graphisme artistique",
+          "objectifs": {
+            "avant_4_ans": [
+              "Explorer des gestes et commencer à les associer à des tracés.",
+              "Découvrir et reproduire des motifs simples."
+            ],
+            "a_partir_4_ans": [
+              "Reproduire et combiner des motifs graphiques en contrôlant davantage le geste."
+            ],
+            "a_partir_5_ans": [
+              "Créer et organiser des motifs graphiques dans l'espace.",
+              "Constituer et enrichir un répertoire de motifs."
+            ]
+          }
+        },
+        {
+          "id": "D4-T3",
+          "nom": "Univers sonores : chanter et jouer avec sa voix",
+          "objectifs": {
+            "avant_4_ans": [
+              "Explorer les possibilités de la voix et chanter ou dire des comptines courtes.",
+              "Articuler suffisamment pour être compris."
+            ],
+            "a_partir_4_ans": [
+              "Explorer les nuances et possibilités expressives de la voix.",
+              "Chanter des comptines et chants en exprimant une intention ou une émotion."
+            ],
+            "a_partir_5_ans": [
+              "Développer l'inventivité vocale et trouver sa place dans un groupe chantant.",
+              "Mémoriser et interpréter un répertoire de chants."
+            ]
+          }
+        },
+        {
+          "id": "D4-T4",
+          "nom": "Univers sonores : explorer les instruments et les sonorités",
+          "objectifs": {
+            "avant_4_ans": [
+              "Explorer les sons produits par le corps, des objets et de petits instruments."
+            ],
+            "a_partir_4_ans": [
+              "Produire des sons en adaptant son geste à une consigne.",
+              "Reproduire collectivement un rythme simple."
+            ],
+            "a_partir_5_ans": [
+              "Explorer les relations entre geste et son.",
+              "Créer un paysage sonore en répondant à une consigne."
+            ]
+          }
+        },
+        {
+          "id": "D4-T5",
+          "nom": "Univers sonores : écouter et découvrir des œuvres",
+          "objectifs": {
+            "avant_4_ans": [
+              "Développer une posture d'écoute et traduire la musique par le mouvement."
+            ],
+            "a_partir_4_ans": [
+              "Exprimer ses émotions après l'écoute et découvrir des œuvres musicales patrimoniales."
+            ],
+            "a_partir_5_ans": [
+              "Repérer des éléments musicaux significatifs et traduire l'écoute par une production graphique ou corporelle.",
+              "Connaître plusieurs œuvres patrimoniales."
+            ]
+          }
+        },
+        {
+          "id": "D4-T6",
+          "nom": "Spectacle vivant : jouer, interpréter et devenir spectateur",
+          "objectifs": {
+            "avant_4_ans": [
+              "Exprimer des émotions avec le corps et la voix.",
+              "Découvrir des rôles simples et des mises en scène collectives.",
+              "Découvrir des œuvres adaptées et l'espace scénique."
+            ],
+            "a_partir_4_ans": [
+              "Explorer des rôles et participer à une mise en scène.",
+              "Évoquer un spectacle et exprimer un avis ou une émotion.",
+              "Rencontrer des artistes lorsque cela est possible."
+            ],
+            "a_partir_5_ans": [
+              "Enchaîner des émotions et des rôles dans une production collective.",
+              "Explorer l'espace scénique et construire une posture de spectateur."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "D5",
+      "nom_officiel": "Se repérer dans le temps et l’espace",
+      "source": {
+        "bo": "BO n° 19 du 7 mai 2026",
+        "pages_document": "52-57"
+      },
+      "thematiques": [
+        {
+          "id": "D5-T1",
+          "nom": "Se repérer dans le temps : organiser les moments vécus",
+          "objectifs": {
+            "avant_4_ans": [
+              "Repérer le début et la fin d'une activité.",
+              "Ordonner quelques moments familiers de la journée.",
+              "Utiliser un vocabulaire simple de succession et de durée."
+            ],
+            "a_partir_4_ans": [
+              "Restituer la chronologie des actions majeures d'une histoire simple.",
+              "Relater une procédure en utilisant des connecteurs temporels.",
+              "Commencer à nommer les jours de la semaine et situer un événement de classe."
+            ],
+            "a_partir_5_ans": [
+              "Ordonner les étapes d'un processus ou d'un événement vécu.",
+              "Évoquer succession, antériorité, postériorité et simultanéité.",
+              "Commencer à comprendre l'organisation du mois en semaines et de l'année en mois."
+            ]
+          }
+        },
+        {
+          "id": "D5-T2",
+          "nom": "Se repérer dans le temps : construire la notion de durée",
+          "objectifs": {
+            "avant_4_ans": [
+              "Attendre son tour et percevoir le début et la fin d'une activité.",
+              "Comprendre quelques mots usuels liés à la durée."
+            ],
+            "a_partir_4_ans": [
+              "Percevoir que certaines durées sont stables.",
+              "Découvrir la fonction du sablier et du minuteur.",
+              "Enrichir le vocabulaire de la durée."
+            ],
+            "a_partir_5_ans": [
+              "Comparer des durées et organiser une activité dans un temps imparti.",
+              "Commencer à se représenter un passé éloigné, antérieur à sa propre vie."
+            ]
+          }
+        },
+        {
+          "id": "D5-T3",
+          "nom": "Se repérer dans l’espace : explorer et représenter",
+          "objectifs": {
+            "avant_4_ans": [
+              "Explorer l'espace proche et les lieux de l'école.",
+              "Se déplacer en utilisant des repères spatiaux simples.",
+              "Commencer à représenter un déplacement avec des objets ou figurines."
+            ],
+            "a_partir_4_ans": [
+              "Décrire et représenter des déplacements dans des espaces familiers.",
+              "Utiliser un vocabulaire spatial plus précis.",
+              "Représenter un parcours avec du matériel."
+            ],
+            "a_partir_5_ans": [
+              "Représenter un parcours ou l'environnement proche sur un plan ou un dessin.",
+              "Restituer oralement un déplacement mémorisé.",
+              "Utiliser des représentations spatiales pour communiquer un trajet."
+            ]
+          }
+        },
+        {
+          "id": "D5-T4",
+          "nom": "Découvrir l’environnement proche",
+          "objectifs": {
+            "avant_4_ans": [
+              "Explorer les lieux de l'école et identifier des éléments caractéristiques."
+            ],
+            "a_partir_4_ans": [
+              "Décrire des lieux proches et comparer leurs fonctions ou leurs caractéristiques."
+            ],
+            "a_partir_5_ans": [
+              "Représenter et décrire des espaces familiers et commencer à les situer les uns par rapport aux autres."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "D6",
+      "nom_officiel": "Découvrir le monde du vivant, de la matière et des objets",
+      "source": {
+        "bo": "BO n° 19 du 7 mai 2026",
+        "pages_document": "58-63"
+      },
+      "thematiques": [
+        {
+          "id": "D6-T1",
+          "nom": "Découvrir le monde du vivant",
+          "objectifs": {
+            "avant_4_ans": [
+              "Observer et reconnaître quelques manifestations de la vie animale et végétale.",
+              "Identifier des besoins simples du vivant et prendre part à des gestes de soin.",
+              "Observer son corps et quelques règles d'hygiène."
+            ],
+            "a_partir_4_ans": [
+              "Comparer des êtres vivants et décrire leurs caractéristiques observables.",
+              "Repérer des étapes simples du développement et des cycles de vie.",
+              "Identifier des parties du corps et comprendre quelques besoins liés à la santé."
+            ],
+            "a_partir_5_ans": [
+              "Classer des êtres vivants selon des critères observables.",
+              "Comprendre des relations simples entre êtres vivants et environnement.",
+              "Décrire des transformations du vivant et adopter des comportements favorables à la santé."
+            ]
+          }
+        },
+        {
+          "id": "D6-T2",
+          "nom": "Découvrir le monde de la matière",
+          "objectifs": {
+            "avant_4_ans": [
+              "Explorer des matériaux par les sens et la manipulation.",
+              "Observer des changements simples provoqués par des actions."
+            ],
+            "a_partir_4_ans": [
+              "Comparer des matériaux selon leurs propriétés observables.",
+              "Expérimenter des actions sur la matière et décrire les résultats."
+            ],
+            "a_partir_5_ans": [
+              "Choisir des matériaux en fonction d'un usage ou d'une propriété.",
+              "Anticiper, réaliser et décrire des transformations simples de la matière."
+            ]
+          }
+        },
+        {
+          "id": "D6-T3",
+          "nom": "Découvrir les objets techniques et leurs usages",
+          "objectifs": {
+            "avant_4_ans": [
+              "Manipuler des objets usuels et découvrir leurs fonctions.",
+              "Utiliser des outils simples dans des situations accompagnées."
+            ],
+            "a_partir_4_ans": [
+              "Identifier la fonction de quelques objets et comprendre des modes d'action simples.",
+              "Assembler, démonter ou utiliser des objets selon une consigne."
+            ],
+            "a_partir_5_ans": [
+              "Choisir et utiliser des outils adaptés à une tâche.",
+              "Réaliser un assemblage ou une construction en suivant une démarche et en expliquant les étapes."
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "programme_complementaire": [
+    {
+      "id": "EVAR",
+      "nom": "Éducation à la vie affective et relationnelle à l’école maternelle",
+      "bo": "BO n° 6 du 6 février 2025",
+      "statut": "programme_complementaire_hors_des_six_domaines",
+      "note": "À intégrer comme référentiel transversal distinct, sans le présenter comme un septième domaine d'apprentissage."
+    }
+  ],
+  "metadonnees_techniques": {
+    "format": "JSON",
+    "encodage": "UTF-8",
+    "identifiants": "Identifiants internes stables, non officiels",
+    "conseil_versionnage": "Créer une nouvelle version du référentiel à chaque modification des programmes ; ne jamais réécrire les observations historiques des élèves.",
+    "limites_de_cette_version": [
+      "Cette version constitue une base pédagogique structurée et synthétique, pas une transcription exhaustive de toutes les lignes du programme consolidé.",
+      "Les objectifs sont reformulés pour faciliter l'exploitation logicielle ; ils ne doivent pas être présentés comme des citations littérales du Bulletin officiel.",
+      "Les exemples de réussite détaillés et les points de vigilance du programme ne sont pas encore intégralement intégrés.",
+      "Une vérification domaine par domaine avec le PDF officiel est nécessaire avant publication comme référentiel institutionnel."
+    ]
+  }
+}

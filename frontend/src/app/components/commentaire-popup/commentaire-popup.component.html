@@ -1,0 +1,21 @@
+<h2 mat-dialog-title class="popup-title">
+  <mat-icon>comment</mat-icon>
+  <span>Commentaire</span>
+</h2>
+
+<mat-dialog-content>
+  <p class="popup-subtitle">{{ titre }}</p>
+  <p class="popup-eleve">{{ sousTitre }}</p>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Saisir un commentaire</mat-label>
+    <textarea matInput [(ngModel)]="texte" rows="5" placeholder="Commentaire libre..."></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Annuler</button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="saving">
+    <mat-icon>save</mat-icon>
+    {{ saving ? 'Enregistrement...' : 'Enregistrer' }}
+  </button>
+</mat-dialog-actions>

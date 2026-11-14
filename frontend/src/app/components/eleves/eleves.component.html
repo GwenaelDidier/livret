@@ -1,0 +1,81 @@
+<div class="eleves-container">
+  <div class="page-header">
+    <h1>Élèves</h1>
+    <button mat-raised-button color="primary" (click)="openAddEleve()">
+      <mat-icon>person_add</mat-icon> Ajouter un élève
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <mat-progress-spinner mode="indeterminate" diameter="48"></mat-progress-spinner>
+  </div>
+
+  <div *ngIf="!loading" class="niveaux-container">
+
+    <div *ngFor="let niveau of niveaux" class="niveau-section" [ngClass]="'niveau-' + niveau">
+      <div class="niveau-header">
+        <div class="niveau-title">
+          <span class="niveau-badge">{{ niveau }}</span>
+          <span class="niveau-count">
+            {{ elevesForNiveau(niveau).length }} élève{{ elevesForNiveau(niveau).length !== 1 ? 's' : '' }}
+          </span>
+        </div>
+        <button *ngIf="niveauSuivant[niveau] && elevesForNiveau(niveau).length > 0"
+                mat-stroked-button
+                [disabled]="promoting === niveau"
+                (click)="promouvoir(niveau)">
+          <mat-icon>arrow_upward</mat-icon>
+          {{ promoting === niveau ? 'Promotion…' : 'Passer en ' + niveauSuivant[niveau] }}
+        </button>
+      </div>
+
+      <div *ngIf="elevesForNiveau(niveau).length === 0" class="empty-niveau">
+        Aucun élève dans ce niveau
+      </div>
+
+      <div class="eleves-list">
+        <div class="eleve-card" *ngFor="let eleve of elevesForNiveau(niveau)">
+          <div class="avatar">{{ eleve.prenom[0] }}{{ eleve.nom[0] }}</div>
+          <div class="eleve-info">
+            <span class="eleve-nom">{{ eleve.nom }} {{ eleve.prenom }}</span>
+          </div>
+          <button mat-icon-button matTooltip="Modifier" (click)="openEditEleve(eleve)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" matTooltip="Supprimer" (click)="deleteEleve(eleve)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="elevesSansNiveau().length > 0" class="niveau-section niveau-none">
+      <div class="niveau-header">
+        <div class="niveau-title">
+          <span class="niveau-badge">—</span>
+          <span class="niveau-count">Niveau non défini ({{ elevesSansNiveau().length }})</span>
+        </div>
+      </div>
+      <div class="eleves-list">
+        <div class="eleve-card" *ngFor="let eleve of elevesSansNiveau()">
+          <div class="avatar avatar-none">{{ eleve.prenom[0] }}{{ eleve.nom[0] }}</div>
+          <div class="eleve-info">
+            <span class="eleve-nom">{{ eleve.nom }} {{ eleve.prenom }}</span>
+          </div>
+          <button mat-icon-button matTooltip="Modifier" (click)="openEditEleve(eleve)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" matTooltip="Supprimer" (click)="deleteEleve(eleve)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="eleves.length === 0" class="empty-state">
+      <mat-icon>people_outline</mat-icon>
+      <p>Aucun élève enregistré.</p>
+    </div>
+
+  </div>
+</div>

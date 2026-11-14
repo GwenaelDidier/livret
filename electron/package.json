@@ -1,0 +1,59 @@
+{
+  "name": "livret-evaluation",
+  "version": "1.0.0",
+  "description": "Application de livret d'évaluation pour enseignants",
+  "main": "main.js",
+  "scripts": {
+    "start": "cd .. && npm run dev:electron",
+    "electron-only": "electron . --no-sandbox",
+    "build": "electron-builder --win",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "build": {
+    "appId": "com.livret.evaluation",
+    "productName": "Livret Évaluation",
+    "directories": {
+      "output": "../dist"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "files": [
+      "main.js",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "../backend",
+        "to": "backend",
+        "filter": [
+          "**/*",
+          "!node_modules/.cache/**"
+        ]
+      },
+      {
+        "from": "../frontend/dist",
+        "to": "frontend/dist",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../data/referentiel-cycle-1-2026-2027.json",
+        "to": "data/referentiel-cycle-1-2026-2027.json"
+      }
+    ]
+  },
+  "dependencies": {
+    "electron": "39.2.6",
+    "electron-builder": "^26.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  }
+}

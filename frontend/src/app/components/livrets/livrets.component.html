@@ -1,0 +1,63 @@
+<div class="livrets-container">
+  <div class="page-header">
+    <div class="header-left">
+      <h1>Livrets des élèves</h1>
+      <p class="subtitle">Taux d'avancement par élève</p>
+    </div>
+    <button mat-raised-button color="primary" (click)="exportClassePdf()" [disabled]="pdfLoading || loading">
+      <mat-icon>picture_as_pdf</mat-icon>
+      {{ pdfLoading ? 'Génération…' : 'Exporter la classe (PDF)' }}
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <mat-progress-spinner mode="indeterminate" diameter="48"></mat-progress-spinner>
+    <p>Chargement…</p>
+  </div>
+
+  <div *ngIf="!loading && stats.length === 0" class="empty">
+    <mat-icon>people_outline</mat-icon>
+    <p>Aucun élève enregistré.</p>
+  </div>
+
+  <div *ngIf="!loading" class="cards-grid">
+    <div *ngFor="let s of stats; trackBy: trackByEleve" class="eleve-card"
+         role="button" tabindex="0"
+         [attr.aria-label]="'Ouvrir le livret de ' + s.eleve.prenom + ' ' + s.eleve.nom"
+         (click)="openLivret(s)" (keydown)="onCardKeydown(s, $event)">
+
+      <!-- Avatar + name -->
+      <div class="card-header">
+        <div class="avatar">{{ s.eleve.prenom[0] }}{{ s.eleve.nom[0] }}</div>
+        <div class="card-identity">
+          <div class="card-name">{{ s.eleve.prenom }} {{ s.eleve.nom }}</div>
+          <div *ngIf="s.eleve.classe" class="card-classe">{{ s.eleve.classe }}</div>
+        </div>
+        <div class="card-pct">{{ s.acquisPct }}<span class="pct-symbol">%</span></div>
+      </div>
+
+      <!-- Stacked progress bar -->
+      <div class="progress-bar" [matTooltip]="s.acquis + ' acquis · ' + s.enCours + ' en cours · ' + s.nonAcquis + ' non acquis · ' + s.nonEvalue + ' non évalués'">
+        <div class="seg seg-acquis"    [style.width]="barWidth(s.acquis, s.total)"></div>
+        <div class="seg seg-en_cours"  [style.width]="barWidth(s.enCours, s.total)"></div>
+        <div class="seg seg-non_acquis"[style.width]="barWidth(s.nonAcquis, s.total)"></div>
+        <div class="seg seg-non_evalue"[style.width]="barWidth(s.nonEvalue, s.total)"></div>
+      </div>
+
+      <!-- Stat pills -->
+      <div class="stat-pills">
+        <span class="pill pill-acquis">✓ {{ s.acquis }} acquis</span>
+        <span class="pill pill-en_cours">~ {{ s.enCours }} en cours</span>
+        <span class="pill pill-non_acquis">✗ {{ s.nonAcquis }} non acquis</span>
+        <span class="pill pill-non_evalue">— {{ s.nonEvalue }} non évalués</span>
+      </div>
+
+      <div class="card-footer">
+        <span class="comp-total">{{ s.total }} objectifs au total</span>
+        <button mat-icon-button class="open-fullpage-btn" (click)="openLivretFullPage(s, $event)" matTooltip="Ouvrir en page complète">
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

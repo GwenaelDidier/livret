@@ -1,0 +1,608 @@
+[
+    {
+        "domaine": "🗣️ Français - Acquérir le langage oral",
+        "motIntro": "À l’école maternelle, votre enfant apprend à mieux parler et à mieux se faire comprendre.\n- Il apprend de nouveaux mots, en lien avec la vie de la classe, le quotidien et ses expériences.Ces mots sont répétés, expliqués et réutilisés pour bien les mémoriser.\n- Il apprend à faire des phrases de plus en plus correctes et complètes, d’abord simples, puis plus longues, pour mieux exprimer ses idées.\n- Il s’entraîne à bien prononcer les mots, pour parler clairement et être compris par les autres.\n- Il apprend à parler dans différentes situations : raconter, expliquer, décrire, discuter avec les autres enfants et les adultes.",
+        "competences": [
+            {
+                "nom": "##🔤 Enrichir son vocabulaire",
+                "image": ""
+            },
+            {
+                "nom": "Je comprends et j’utilise des mots de la vie quotidienne.",
+                "image": "",
+                "aide": "Je comprends et j’utilise des mots de la vie familiale./Je comprends et j’utilise des mots des activités récurrentes de la classe./Je comprends et j’utilise des mots des relations avec les autres./Je comprends et j’utilise des mots de mon environnement proche./Je comprends et j’utilise des mots des émotions, des sentiments."
+            },
+            {
+                "nom": "Je comprends et j’utilise des mots liés aux activités de la classe et aux projets.",
+                "image": "",
+                "aide": "Je comprends et j’utilise des mots des projets et domaines vus en classe./Je comprends et j’utilise des mots qui préparent l'entrée en CP."
+            },
+            {
+                "nom": "Je comprends et j’utilise les mots entendus dans les histoires et les albums lus en classe.",
+                "image": "",
+                "aide": ""
+            },
+            {
+                "nom": "Je nomme, reconnais et classe des objets.",
+                "image": "",
+                "aide": "Je trouve un objet présent nommé par l'adulte./Je reconnais et nomme un objet présenté sous différentes formes."
+            },
+            {
+                "nom": "Je range et regroupe des objets par catégories.",
+                "image": "",
+                "aide": "J'attribue un objet à une catégorie./Je range des jeux familiers par catégorie."
+            },
+            {
+                "nom": "Je trouve un intrus dans une catégorie.",
+                "image": ""
+            },
+            {
+                "nom": "Je comprends et j’utilise des mots nouveaux.",
+                "image": "",
+                "aide": "Je retrouve un mot jamais entendu./Je m'appuie sur des noms que je connais déjà pour comprendre un mot nouveau./Je construis des mots dérivés de mots connus./ Je m'appuie sur des noms et des verbes que je connais déjà pour construire un mot nouveau."
+            },
+            {
+                "nom": "Je trouve des mots qui ont plusieurs sens.",
+                "image": "",
+                "aide": "Je distingue les différents sens d'un mot./Je distingue le sens propre du sens figuré."
+            },
+            {
+                "nom": "Je trouve des mots qui veulent dire la même chose.",
+                "image": ""
+            },
+            {
+                "nom": "Je comprends et j’utilise des mots pour parler des émotions et des sentiments.",
+                "image": ""
+            },
+            {
+                "nom": "Je devine le sens d’un mot inconnu grâce au contexte.",
+                "image": ""
+            },
+            {
+                "nom": "Je comprends et j'utilise des mots qui se ressemblent.",
+                "image": "",
+                "aide": ""
+            },
+            {
+                "nom": "##🧩 Développer sa syntaxe (faire des phrases)",
+                "image": ""
+            },
+            {
+                "nom": "Je fais des phrases simples pour m’exprimer.",
+                "image": "",
+                "aide": "J'ose parler pour exprimer un besoin ou prendre part à la vie de la classe./Je dis ce que je fais./Je dis ce que j'ai fait et, peu à peu, ce que je vais faire./Je dis ce que je vais faire./Je dis comment j'ai fait ou comment je vais faire./Je participe à des échanges en restant dans le propos./Je décris une action ou une activité qui a été menée par autrui./Je me fais comprendre d'un adulte qui ne connaît rien à la situation évoquée./Je participe à une conversation avec un adulte ou des pairs./Je reformule mon propos s'il n'a pas été compris./J'émets une hypothèse."
+            },
+            {
+                "nom": "J’utilise les pronoms (je, tu, il, elle, on, nous, vous).",
+                "image": "",
+                "aide": "J'utilise les pronoms il-elle/ils-elles./J'utilise le pronom je./J'utilise le pronom on./J'utilise le pronom tu./J'utilise les pronoms nous/vous."
+            },
+            {
+                "nom": "J’utilise les temps des verbes pour parler du passé, du présent et du futur.",
+                "image": "",
+                "aide": "J'utilise le présent./J'utilise l'imparfait./J'utilise le passé composé./J'utilise le conditionnel./J'utilise différents temps pour parler du passé, du présent, du futur./J'utilise le futur simple./J'associe différents temps pour parler du futur./J'associe différents temps pour parler du passé."
+            },
+            {
+                "nom": "Je relie mes phrases avec des mots comme : et, puis, parce que, quand.",
+                "image": "",
+                "aide": "J'utilise et, et puis./J'utilise parce que, que, qui./J'utilise où, quand, pour que, si, comme."
+            },
+            {
+                "nom": "J’utilise des mots pour dire l’ordre des actions (avant, après, pendant).",
+                "image": "",
+                "aide": "J'utilise d'abord, ensuite, après, pendant."
+            },
+            {
+                "nom": "##👂 Prononcer et distinguer les sons",
+                "image": ""
+            },
+            {
+                "nom": "Je parle de façon claire et compréhensible.",
+                "image": "",
+                "aide": "Je prononce correctement les doubles consonnes : br, cr, bl, pl, sl./Je prononce correctement, à partir d'un imagier."
+            },
+            {
+                "nom": "Je distingue et prononce correctement des sons proches.",
+                "image": "",
+                "aide": "Je distingue et prononce les sons t-k, f-s, m-n./Je distingue et prononce les sons f-v, s-z, p-b, t-d, k-g./Je distingue et prononce les sons é-in, a-an, o-on./Je distingue et prononce les sons ch-s, ch-j, ch-z."
+            },
+            {
+                "nom": "Je fais attention aux syllabes et aux sons dans les mots.",
+                "image": "",
+                "aide": "Je prononce correctement, à partir d'un imagier, des mots comme cour-tour, cube-tube, cassé-café, pouce-pouf, nain-main./Je prononce correctement, à partir d'un imagier, des mots comme  ville-fil, dessert-désert, poison-poisson, pépé-bébé, doigt-toit,  gare-car et les mots à phonèmes proches : boule-poule./Je prononce correctement, à partir d'un imagier, des mots comme chaud-seau, mouche-mousse, bijou-bisou, manche-mange."
+            },
+            {
+                "nom": "Je répète des mots et des phrases en articulant correctement.",
+                "image": ""
+            }
+        ],
+        "couleur": "#2e86c1"
+    },
+    {
+        "domaine": "✏️ De l'oral à l'écrit - se préparer à apprendre à lire et à écrire",
+        "motIntro": "À l’école maternelle, les enfants apprennent  **à parler, écouter, comprendre et se préparer à lire et à écrire**.\n\n| 🔤  **Se préparer à lire** | 🌍  **Découvrir les langues** |\n|--|--|\n| Les enfants jouent avec les sons des mots (syllabes, rimes, sons).<br>Ils découvrent les lettres : leur  **nom**, leur  **forme**  et leur  **son**.<br>Ils apprennent que les lettres servent à écrire des mots qui ont du sens. | Les enfants entendent  **d’autres langues**  (langues familiales, étrangères, langue des signes).<br>Cela aide à mieux écouter les sons et à respecter les différences.<br>Le multilinguisme est vu comme une  **richesse**. |\n\n| 📚  **Découvrir les livres et les écrits** | ✏️  **Se préparer à écrire** | 📝  **Produire des premiers écrits** |\n|--|--|--|\n| L’enseignant lit  **des histoires tous les jours**.<br>Les enfants découvrent à quoi servent les écrits (histoires, recettes, documents).<br>Ils apprennent à aimer les livres et à en prendre soin. | Les enfants apprennent à bien tenir leur crayon et à faire des gestes précis.<br>Ils s’entraînent à tracer des formes puis des lettres.<br>Leurs premiers essais d’écriture sont  **encouragés et valorisés**. | Les enfants comprennent que l’on peut  **dire quelque chose et l’écrire**.<br>Avec l’aide de l’adulte, ils dictent des phrases.<br>Peu à peu, ils essaient d’écrire seuls des mots simples. |",
+        "competences": [
+            {
+                "nom": "##🔠 Jouer avec les sons et les lettres",
+                "image": ""
+            },
+            {
+                "nom": "J’écoute et reconnais les sons de la langue.",
+                "image": "",
+                "aide": "Je reconnais et trouve d'où vient un son familier./Je reconnais et distingue les sons de la langue et je les mémorise."
+            },
+            {
+                "nom": "Je découpe les mots en syllabes.",
+                "image": "",
+                "aide": "Je dis mon prénom ou une comptine en scandant les syllabes./Je tape les syllabes d'un mot./Je compte les syllabes de mots familiers sans écrire, je compare les mots selon le nombre de syllabes et je les classe."
+            },
+            {
+                "nom": "Je joue avec les sons (rimes, répétitions, changements).",
+                "image": "",
+                "aide": "Je repère un mot ou les sons les plus courants dans une suite./Je repère et produis des rimes et des sons qui se répètent."
+            },
+            {
+                "nom": "Je reconnais et nomme les lettres.",
+                "image": "",
+                "aide": "Je trouve l'étiquette de mon prénom parmi d'autres en regardant les lettres./Je reconnais et nomme toutes les lettres d'un mot écrit dans les trois graphies."
+            },
+            {
+                "nom": "Je fais le lien entre les sons et les lettres.",
+                "image": "",
+                "aide": "J'utilise le nom de quelques lettres connues pour représenter les sons entendus (les voyelles)./Je répète un mot lentement pour retrouver les lettres correspondantes aux sons."
+            },
+            {
+                "nom": "J’épelle des mots connus.",
+                "image": "",
+                "aide": "J'épelle les lettres d'un mot connu pour que quelqu'un d'autre puisse l'écrire./Je compose un mot connu en commençant par la première lettre et en respectant l'ordre des lettres."
+            },
+            {
+                "nom": "##📖 Comprendre les écrits",
+                "image": "",
+                "aide": ""
+            },
+            {
+                "nom": "Je sais à quoi servent les écrits (histoires, recettes, affiches…).",
+                "image": ""
+            },
+            {
+                "nom": "Je reconnais les livres de la classe.",
+                "image": ""
+            },
+            {
+                "nom": "Je raconte une histoire connue avec mes mots.",
+                "image": "",
+                "aide": "J'utilise une marionnette pour raconter ce que le personnage fait dans chaque livre./Avec l'aide d'un objet ou d'un décor, je peux raconter une histoire que j'ai déjà entendue plusieurs fois./Je raconte une histoire connue de mémoire, du début à la fin, sans aide."
+            },
+            {
+                "nom": "Je parle des personnages, de leurs actions et de leurs émotions.",
+                "image": "",
+                "aide": "Je trouve les livres où apparaît le même personnage./J'explique pourquoi les personnages agissent ainsi, ce qu'ils ressentent, ce qu'ils vivent et comment ils interagissent avec les autres./Je compare les émotions des personnages à ce que je ressens moi-même."
+            },
+            {
+                "nom": "Je connais des mots pour parler de l’écrit (page, ligne, mot, phrase).",
+                "image": ""
+            },
+            {
+                "nom": "##✍️ Apprendre à écrire",
+                "image": ""
+            },
+            {
+                "nom": "Je développe ma motricité fine avec des activités manuelles.",
+                "image": ""
+            },
+            {
+                "nom": "Je trace des formes et des lettres.",
+                "image": "",
+                "aide": "Je fais des tracés libres./Je trace des formes de base comme des traits verticaux, horizontaux, des points, des boucles et des cercles./Je trace des lettres capitales./Je commence à écrire en cursive./Je trace des lettres en écriture cursive et je les relie."
+            },
+            {
+                "nom": "Je tiens correctement mon crayon.",
+                "image": "",
+                "aide": "Je me tiens correctement pour écrire./Je tiens correctement mon stylo et j'évite de le lever en écrivant./J'utilise mon épaule, coude, poignet et mes doigts pour guider le crayon."
+            },
+            {
+                "nom": "J’écris de gauche à droite.",
+                "image": "",
+                "aide": "Je me repère sur le support (papier, table, etc.)./Je sais écrire de gauche à droite sur une feuille."
+            },
+            {
+                "nom": "J’écris mon prénom.",
+                "image": "",
+                "aide": "Je copie en lettres capitales mon prénom./J'écris mon prénom en cursive sans modèle."
+            },
+            {
+                "nom": "Je commence à écrire des mots simples.",
+                "image": "",
+                "aide": "J'écris en capitale des mots utilisés en classe./J'écris un mot simple en cursive, avec ou sans modèle."
+            },
+            {
+                "nom": "##📝 Produire de premiers écrits",
+                "image": ""
+            },
+            {
+                "nom": "Je comprends que l’écrit sert à transmettre un message.",
+                "image": "",
+                "aide": "Je comprends que le dessin est différent de l'écriture./Je comprends que quand un adulte lit un texte plusieurs fois, les mots restent les mêmes./Je sais que l'on lit de gauche à droite et de haut en bas./Je suis le texte avec mes yeux quand un adulte le lit./Je remarque quand l'enseignant-e oublie un mot exprès pendant une dictée."
+            },
+            {
+                "nom": "Je dicte un message à un adulte.",
+                "image": "",
+                "aide": "Je demande à un adulte d'écrire ou de légender un dessin./Je peux construire un court message , le mémoriser et ensuite le dicter à l'adulte./Je reformule mes idées pour qu'elles soient correctes et les dicte./J'adapte la vitesse de ma parole pour que l'adulte puisse écrire."
+            },
+            {
+                "nom": "J’essaie d’écrire des mots, même s’ils ne sont pas parfaits.",
+                "image": "",
+                "aide": "Je trace des signes abstraits sur une feuille et je verbalise que j'ai écrit./J'utilise le nom de quelques lettres que je connais pour représenter les sons que j'entends./J'écris un mot en suivant un modèle donné par l'enseignant-e./J'utilise ce que je sais et ce que la classe sait pour écrire des mots./J'écris un mot facile et explique comment je l'ai fait."
+            },
+            {
+                "nom": "Je reconnais des mots connus dans une phrase.",
+                "image": "",
+                "aide": "Je reconnais un mot facile dans une phrase écrite et lue."
+            },
+            {
+                "nom": "Je fais attention aux lettres, aux sons et à la présentation.",
+                "image": "",
+                "aide": "Je sais qu'il existe des signes de l'écrit : ponctuation/ majuscule/mise en page."
+            },
+            {
+                "nom": "##🗣️ Découvrir des langues différentes",
+                "image": "",
+                "aide": ""
+            },
+            {
+                "nom": "J'aime découvrir d'autres langues.",
+                "image": ""
+            },
+            {
+                "nom": "Je répète des sons, des mots et des phrases issus d'une autre langue.",
+                "image": ""
+            },
+            {
+                "nom": "Je reconnais des sons nouveaux.",
+                "image": ""
+            },
+            {
+                "nom": "Je mémorise des chants et des comptines dans une autre langue.",
+                "image": ""
+            },
+            {
+                "nom": "Je me souviens de quelques mots et de consignes simples pour réaliser des activités ou pour saluer et me présenter.",
+                "image": ""
+            }
+        ],
+        "couleur": "#2e86c1"
+    },
+    {
+        "domaine": "🔢 Mathématiques - Découvrir les nombres et les formes",
+        "motIntro": "| 🔢 Découvrir les nombres | 🧠 Utiliser les nombres pour résoudre des problèmes |\n|--|--|\n| Les enfants ont très tôt des idées sur les quantités.  <br>À l’école maternelle, ils apprennent progressivement à  **comprendre ce qu’est un nombre**, à  **compter des objets**, à  **comparer des quantités**  et à  **faire le lien entre le nombre, les objets et leur écriture**.  <br>Ils découvrent que le nombre ne dépend ni de la taille, ni de la forme, ni de la disposition des objets. | Les enfants apprennent à **chercher des solutions à de petits problèmes concrets** de la vie quotidienne : ajouter, enlever, comparer, partager.  <br>Ils manipulent, font des essais, expliquent ce qu’ils font et vérifient leurs réponses.  <br>Petit à petit, ils développent leur **raisonnement** et comprennent le sens des premières opérations, sans utiliser encore de calculs écrits. |\n\n| 🔺 Explorer les solides et les formes planes | 📏 Explorer les grandeurs (longueur, masse) | 🔁 Se familiariser avec les motifs organisés |\n|--|--|--|\n| Les enfants découvrent les **formes et les objets** en les manipulant, en les observant et en en parlant.  <br>Ils apprennent à reconnaître des formes simples (comme le carré, le triangle, le disque) et des solides (comme le cube ou la boule).  <br>Cela les aide à **se repérer dans l’espace**, à **trier**, à **classer** et à enrichir leur vocabulaire. | Les enfants comparent des objets pour savoir **lequel est plus long, plus court, plus lourd ou plus léger**.  <br>Ils apprennent à utiliser des outils simples (comme une balance) et à expliquer leurs observations avec des mots précis.  <br>Ces activités développent leur **sens de la comparaison et de l’observation**. | Les enfants observent, reproduisent et créent des **motifs** (par exemple des suites de couleurs, de gestes ou de sons).  <br>Ils apprennent à reconnaître ce qui se répète et à expliquer la règle du motif.  <br>Ces activités développent leur **mémoire**, leur **capacité à organiser leurs idées** et les préparent à des notions plus avancées comme les suites et les algorithmes. |",
+        "competences": [
+            {
+                "nom": "##🔢 Comprendre les nombres",
+                "image": ""
+            },
+            {
+                "nom": "Je reconnais et compte des objets.",
+                "image": "",
+                "aide": "Jusqu'à 4./Jusqu'à 6./Jusqu'à 10."
+            },
+            {
+                "nom": "Je compare des quantités.",
+                "image": "",
+                "aide": "Jusqu'à 3./Jusqu'à 6./Jusqu'à 10."
+            },
+            {
+                "nom": "Je sais ajouter ou enlever un objet.",
+                "image": ""
+            },
+            {
+                "nom": "Je connais la suite des nombres.",
+                "image": "",
+                "aide": "De 1 à 6./De 1 à 12./De 1 à 30./De 2 en 2 jusqu'à 20."
+            },
+            {
+                "nom": "Je compose et décompose des nombres simples.",
+                "image": ""
+            },
+            {
+                "nom": "J’utilise des représentations (doigts, constellations, chiffres).",
+                "image": "",
+                "aide": "Jusqu'à 3./Jusqu'à 6./Jusqu'à 10."
+            },
+            {
+                "nom": "Je sais que le nombre peut représenter une position.",
+                "image": "",
+                "aide": "Je repère le rang d'un objet dans une suite ordonnée./Je comprends comment un déplacement change la position d'un objet./Je sais utiliser les nombres pour donner la position d’un objet dans un jeu./Je construis la bande numérique jusque 10./Je sais repérer visuellement le premier, deuxième, avant dernier et dernier."
+            },
+            {
+                "nom": "##📏 Comparer et mesurer",
+                "image": ""
+            },
+            {
+                "nom": "Je compare des longueurs et des masses.",
+                "image": ""
+            },
+            {
+                "nom": "J’utilise des mots comme plus long, plus court, plus lourd.",
+                "image": ""
+            },
+            {
+                "nom": "Je classe des objets selon leur taille ou leur poids.",
+                "image": ""
+            },
+            {
+                "nom": "##🔺 Formes et motifs",
+                "image": ""
+            },
+            {
+                "nom": "Je reconnais et nomme des formes simples.",
+                "image": "",
+                "aide": "Je reconnais, trie et classe des objets selon leur forme./Je reconnais les formes planes en les voyant et en les touchant./Je reconnais les solides en les voyant et en les touchant./Je décris quelques solides simples./Je décris et nomme quelques figures géométriques simples."
+            },
+            {
+                "nom": "Je trie et classe des formes.",
+                "image": "",
+                "aide": "Je sais classer des formes géométriques./Je sais classer des solides."
+            },
+            {
+                "nom": "Je réalise des pavages et des assemblages.",
+                "image": "",
+                "aide": "Je reproduis des assemblages de solides ou de formes planes./Je sais faire des puzzles d'au moins 4 morceaux./Je sais faire des pavages de 6 éléments./Je reproduis des assemblages de solides et de formes planes./Je sais faire des pavages de 9 éléments et plus."
+            },
+            {
+                "nom": "Je trouve l'axe de symétrie d'une forme.",
+                "image": "",
+                "aide": ""
+            },
+            {
+                "nom": "Je reproduis et crée des motifs.",
+                "image": "",
+                "aide": "Je mémorise un motif répétitif très simple./Je reproduis un motif répétitif à l'identique./Je complète un motif./Je décris des motifs répétitifs simples./Je sais créer des motifs de différentes natures (visuel, sonore ou gestuel)./Je reconnais le motif qui se répète ou qui change, même si les éléments qui le forment sont différents."
+            },
+            {
+                "nom": "##🤔 Résoudre des problèmes",
+                "image": ""
+            },
+            {
+                "nom": "Je sais trouver un total.",
+                "image": ""
+            },
+            {
+                "nom": "Je sais trouver une partie d'un tout.",
+                "image": ""
+            },
+            {
+                "nom": "Je trouve le nombre d'objets ajoutés ou enlevés d'un groupe.",
+                "image": ""
+            },
+            {
+                "nom": "Je sais trouver la différence entre deux collections.",
+                "image": ""
+            },
+            {
+                "nom": "Je sais faire un partage équitable.",
+                "image": ""
+            },
+            {
+                "nom": "Je sais résoudre un problème de déplacement.",
+                "image": ""
+            },
+            {
+                "nom": "J'utilise du matériel pour résoudre des problèmes.",
+                "image": ""
+            },
+            {
+                "nom": "J'utilise une représentation sur papier pour résoudre des problèmes.",
+                "image": ""
+            }
+        ],
+        "couleur": "#cd6155"
+    },
+    {
+        "domaine": "🌍 Explorer le monde",
+        "motIntro": "À l’école maternelle, les enfants découvrent le monde qui les entoure.  \nIls apprennent à **se repérer dans le temps** (hier, aujourd’hui, demain) et **dans l’espace** (classe, école, quartier).  \nIls observent la nature, les objets et les lieux, posent des questions et font des expériences simples.  \nIls commencent aussi à **adopter des comportements responsables**, comme respecter les autres, les lieux et le vivant.",
+        "competences": [
+            {
+                "nom": "##🕒 Se repérer dans le temps",
+                "image": ""
+            },
+            {
+                "nom": "Je parle de ma journée.",
+                "image": "",
+                "aide": "Je peux dire quelles activités se font à quel moment de la journée./Je sais dire si quelque chose s'est passé le matin, l'après-midi ou le soir."
+            },
+            {
+                "nom": "Je sais dire ce qui se passe avant et après.",
+                "image": ""
+            },
+            {
+                "nom": "J’utilise des mots comme hier, aujourd’hui, demain... pour me repérer dans le temps.",
+                "image": "",
+                "aide": ""
+            },
+            {
+                "nom": "Je connais les jours de la semaine.",
+                "image": ""
+            },
+            {
+                "nom": "##📍 Se repérer dans l’espace",
+                "image": ""
+            },
+            {
+                "nom": "Je me repère dans mon environnement.",
+                "image": "",
+                "aide": "Je me repère dans la classe./Je connais les différents espaces de l'école et je peux me déplacer seul./Je reconnais et utilise des représentations d'espaces connus./Je peux dessiner des déplacements ou des emplacements sur un plan ou une photo d'un espace connu."
+            },
+            {
+                "nom": "Je décris des positions (devant, derrière, à côté).",
+                "image": "",
+                "aide": "Je sais repérer ma droite et ma gauche./Je peux décrire où se trouvent les objets ou les personnes par rapport à moi ou par rapport à d'autres objets ou personnes./J'utilise des mots comme 'sur/sous', 'dedans/dehors', 'à côté de/loin de' pour parler de l'emplacement des choses."
+            },
+            {
+                "nom": "Je dessine des personnages et des scènes.",
+                "image": ""
+            },
+            {
+                "nom": "##🌱 Le vivant, les objets et la matière",
+                "image": ""
+            },
+            {
+                "nom": "Je respecte les règles d'hygiène.",
+                "image": "",
+                "aide": "Je peux suivre les règles d'hygiène avec l'aide d'un adulte./Je peux demander de l'aide pour répondre à mes besoins./Je peux gérer mes besoins de façon autonome./Je peux expliquer les règles d'hygiène corporelle et de vie saine."
+            },
+            {
+                "nom": "J’observe les animaux et les plantes.",
+                "image": ""
+            },
+            {
+                "nom": "Je comprends leurs besoins.",
+                "image": ""
+            },
+            {
+                "nom": "Je manipule et transforme des matériaux.",
+                "image": ""
+            },
+            {
+                "nom": "Je reconnais les propriétés des objets.",
+                "image": ""
+            },
+            {
+                "nom": "Je choisis les bons outils.",
+                "image": ""
+            },
+            {
+                "nom": "Je fais attention aux dangers.",
+                "image": ""
+            },
+            {
+                "nom": "##💻 Outils numériques",
+                "image": ""
+            },
+            {
+                "nom": "J’utilise une tablette ou un ordinateur.",
+                "image": ""
+            },
+            {
+                "nom": "Je tape mon prénom au clavier.",
+                "image": ""
+            },
+            {
+                "nom": "Je prends des photos ou enregistre des sons.",
+                "image": ""
+            }
+        ],
+        "couleur": "#af7ac5"
+    },
+    {
+        "domaine": "🎨 Agir, s'exprimer, comprendre",
+        "motIntro": "| 🏃‍♀️ À travers l’activité physique | 🎨 À travers les activités artistiques |\n|--|--|\n| Les activités physiques permettent aux enfants de **bouger, jouer et se dépenser**.  <br>Elles aident à **développer le corps**, l’équilibre, la coordination et la confiance en soi.  <br>Les enfants apprennent à **coopérer avec les autres**, à respecter des règles et à prendre plaisir à l’effort.  <br>Ces activités contribuent aussi au **bien-être et à la santé** de chaque enfant. | Les activités artistiques permettent aux enfants de **s’exprimer librement** avec leur corps, leur voix ou des matériaux.  <br>Ils découvrent la **danse, la musique, le dessin, le théâtre** et d’autres formes d’art.  <br>Ces activités développent l’**imaginaire**, la sensibilité et les émotions.  <br>Les enfants apprennent aussi à **écouter, observer et respecter les créations des autres**. |",
+        "competences": [
+            {
+                "nom": "##🎨 Arts plastiques et musique",
+                "image": ""
+            },
+            {
+                "nom": "Je crée avec différents outils.",
+                "image": "",
+                "aide": "J'utilise différents outils et supports pour créer./Je choisis les outils et les méthodes en fonction de ce que je veux faire./Je contrôle mes mouvements pour m'adapter au support./J'utilise des motifs graphiques."
+            },
+            {
+                "nom": "Je parle de ce que j’ai fait.",
+                "image": ""
+            },
+            {
+                "nom": "Je chante et mémorise des chansons.",
+                "image": ""
+            },
+            {
+                "nom": "J'observe et j'analyse des images.",
+                "image": "",
+                "aide": "Je décris des images fixes ou animées./Je compare des images en repérant les différences et points communs./J'explique les relations entre les images./J'observe attentivement et je repère les détails d'une image, je les explique."
+            },
+            {
+                "nom": "J'utilise ma voix comme instrument.",
+                "image": "",
+                "aide": "Je joue avec ma voix seul ou en groupe pour reproduire des motifs musicaux ou des phrases./Je mémorise des comptines et des chansons pour chanter en groupe."
+            },
+            {
+                "nom": "Je découvre les sons et les instruments.",
+                "image": "",
+                "aide": "J'expérimente différents instruments de musique et des objets qui font du bruit./J'utilise mon corps pour faire des percussions./Je comprends comment mes mouvements produisent des sons et je les maîtrise pour obtenir le son voulu."
+            },
+            {
+                "nom": "Je décris ce que j’entends.",
+                "image": "",
+                "aide": "Je parle de ce que j'ai fait et de ce que mes camarades ont fait./J'apprends des mots pour décrire comment on fait de la musique et les sons qu'on entend./Je suis attentif quand on écoute de la musique./J'utilise les mots que j'ai appris pendant les activités musicales."
+            },
+            {
+                "nom": "##🎭 Corps et mouvement",
+                "image": ""
+            },
+            {
+                "nom": "Je bouge, danse et joue avec les autres.",
+                "image": ""
+            },
+            {
+                "nom": "J’exprime mes émotions avec mon corps.",
+                "image": ""
+            },
+            {
+                "nom": "Je respecte l’espace et les règles.",
+                "image": ""
+            },
+            {
+                "nom": "Je coopère avec les autres.",
+                "image": ""
+            },
+            {
+                "nom": "J'adapte mes déplacements à mon environnement, à des contraintes.",
+                "image": "",
+                "aide": ""
+            }
+        ],
+        "couleur": "#45b39d"
+    },
+    {
+        "domaine": "🤝 Éducation à la vie affective et relationnelle (EVAR)",
+        "motIntro": "",
+        "competences": [
+            {
+                "nom": "Je connais mon corps et mes émotions.",
+                "image": "",
+                "aide": "Je nomme les différentes parties du corps./Je développe la connaissance de moi même./Je découvre et identifie mes émotions./J'identifie mes émotions et sentiments et ceux des autres."
+            },
+            {
+                "nom": "Je respecte mon intimité et celle des autres.",
+                "image": "",
+                "aide": "Je prends conscience de ce qu’est l’intimité : les parties intimes du corps ; les espaces d’intimité ; les mots, les gestes et les conduites associés./Je sais identifier les espaces où chacune et chacun a droit à son intimité."
+            },
+            {
+                "nom": "Je sais dire oui ou non.",
+                "image": "",
+                "aide": "Je sais m’affirmer par le consentement et le refus./Je respecte le refus de l’autre."
+            },
+            {
+                "nom": "Je sais demander de l’aide.",
+                "image": ""
+            },
+            {
+                "nom": "Je reconnais un adulte de confiance.",
+                "image": ""
+            },
+            {
+                "nom": "Je respecte les autres.",
+                "image": ""
+            },
+            {
+                "nom": "Je développe l’amitié, l’entraide et l’empathie.",
+                "image": ""
+            },
+            {
+                "nom": "Je comprends que filles et garçons peuvent faire les mêmes choses.",
+                "image": ""
+            }
+        ],
+        "couleur": "#f5b041"
+    }
+]

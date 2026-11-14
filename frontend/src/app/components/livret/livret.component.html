@@ -1,0 +1,150 @@
+<div *ngIf="loading" class="livret-loading">
+  <mat-progress-spinner mode="indeterminate" diameter="44"></mat-progress-spinner>
+  <p>Chargement du livret…</p>
+</div>
+
+<div *ngIf="loadError" class="livret-load-error">
+  <mat-icon>error_outline</mat-icon>
+  <p>Le livret n’a pas pu être chargé. Vérifiez la connexion au serveur puis réessayez.</p>
+  <button mat-stroked-button color="primary" (click)="close()">Retour aux livrets</button>
+</div>
+
+<div *ngIf="!loading && !loadError" class="livret-container">
+  <header class="livret-header">
+    <div class="header-left">
+      <div class="student-avatar">{{ initials() }}</div>
+      <div class="student-id">
+        <span class="student-name">{{ data.eleve.prenom }} {{ data.eleve.nom }}</span>
+        <span *ngIf="data.eleve.classe" class="student-classe">{{ data.eleve.classe }}</span>
+      </div>
+    </div>
+    <div class="header-stats">
+      <div class="mini-stat">
+        <span class="mini-val acquis">{{ globalStats.acquis }}</span>
+        <span class="mini-lbl">acquis</span>
+      </div>
+      <div class="mini-stat">
+        <span class="mini-val en-cours">{{ globalStats.en_cours }}</span>
+        <span class="mini-lbl">en cours</span>
+      </div>
+      <div class="mini-stat">
+        <span class="mini-val non-acquis">{{ globalStats.non_acquis }}</span>
+        <span class="mini-lbl">non acquis</span>
+      </div>
+      <div class="mini-stat pct">
+        <span class="mini-val highlight">{{ acquisPct }}%</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button *ngIf="!isDialog" mat-icon-button (click)="close()" matTooltip="Retour" class="back-btn">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button mat-icon-button (click)="close()" class="close-btn" matTooltip="Fermer">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </header>
+
+  <main class="livret-content">
+    <div class="dashboard">
+      <!-- Gauche : Radar centré -->
+      <div class="dash-radar">
+        <app-radar-chart [data]="radarData" [size]="200"></app-radar-chart>
+      </div>
+
+      <!-- Droite : barres + donut -->
+      <div class="dash-right">
+        <!-- Progress bars par domaine -->
+        <div class="dash-bars">
+          <div class="domain-bar-row" *ngFor="let domaine of data.domaines; let i = index">
+            <div class="db-color" [style.background-color]="getDomainColor(i)"></div>
+            <div class="db-label" [title]="domaine.nom">{{ domaine.nom }}</div>
+            <div class="db-track">
+              <div class="db-fill" [style.width.%]="radarData[i].value" [style.background]="'linear-gradient(90deg, ' + getDomainColor(i) + ', ' + getDomainColor(i) + '88)'"></div>
+            </div>
+            <div class="db-pct" [style.color]="getDomainColor(i)">{{ radarData[i].value }}%</div>
+          </div>
+        </div>
+
+        <!-- Donut compact + légende inline -->
+        <div class="dash-donut-row">
+          <svg viewBox="0 0 100 100" width="80" height="80" class="donut-svg">
+            <circle cx="50" cy="50" r="38" fill="none" stroke="#eee" stroke-width="14"/>
+            <circle *ngFor="let s of niveauPieSlices"
+                    cx="50" cy="50" r="38" fill="none"
+                    [attr.stroke]="s.color"
+                    stroke-width="14"
+                    [attr.stroke-dasharray]="s.dasharray"
+                    [attr.stroke-dashoffset]="s.dashoffset"
+                    transform="rotate(-90 50 50)"/>
+          </svg>
+          <div class="donut-legend">
+            <div *ngIf="niveauPieSlices.length === 0" class="legend-empty">Aucune acquisition</div>
+            <div *ngFor="let s of niveauPieSlices" class="legend-item">
+              <span class="legend-dot" [style.background]="s.color"></span>
+              <span class="legend-label">{{ s.label }}</span>
+              <span class="legend-count">{{ s.count }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="livret-toolbar">
+      <mat-slide-toggle [(ngModel)]="acquisSeulement" (change)="toggleFilter()">
+        Afficher uniquement les compétences évaluées
+      </mat-slide-toggle>
+      <div>
+        <a mat-icon-button [href]="pdfUrl" target="_blank" title="Ouvrir le PDF dans un nouvel onglet">
+          <mat-icon>open_in_new</mat-icon>
+        </a>
+        <button mat-icon-button (click)="downloadPdf()" [disabled]="pdfLoading" title="Télécharger le PDF">
+          <mat-icon *ngIf="!pdfLoading">download</mat-icon>
+          <mat-progress-spinner *ngIf="pdfLoading" mode="indeterminate" diameter="20"></mat-progress-spinner>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="sections.length === 0" class="empty-state">
+      <mat-icon>filter_none</mat-icon>
+      <p>Aucune compétence à afficher avec le filtre actuel.</p>
+    </div>
+
+    <div *ngFor="let section of sections"
+         class="domaine-section"
+         [style.border-color]="getDomainColor(section.index)">
+
+      <h3 class="domaine-titre" [style.color]="getDomainColor(section.index)">
+        {{ section.domaine.nom }}
+      </h3>
+
+      <!-- Compétences directes -->
+      <div *ngIf="section.directComps.length > 0" class="competences-list">
+        <div *ngFor="let comp of section.directComps" class="competence-item" [ngClass]="'status-' + getStatut(comp.id)">
+          <div class="comp-code">{{ comp.code }}</div>
+          <div class="comp-libelle">{{ comp.libelle }}</div>
+          <div class="niveau-chip" *ngIf="getNiveau(comp.id)" [ngClass]="'niveau-' + getNiveau(comp.id)">
+            {{ getNiveau(comp.id) }}
+          </div>
+          <div class="status-badge">{{ statusLabels[getStatut(comp.id)] }}</div>
+        </div>
+      </div>
+
+      <!-- Sous-domaines -->
+      <div *ngFor="let sub of section.subs" class="sousdomaine-block">
+        <h4 class="sousdomaine-titre">{{ sub.sousdomaine.nom }}</h4>
+        <div class="competences-list">
+          <div *ngFor="let comp of sub.competences" class="competence-item" [ngClass]="'status-' + getStatut(comp.id)">
+            <div class="comp-code">{{ comp.code }}</div>
+            <div class="comp-libelle">{{ comp.libelle }}</div>
+            <div class="niveau-chip" *ngIf="getNiveau(comp.id)" [ngClass]="'niveau-' + getNiveau(comp.id)">
+              {{ getNiveau(comp.id) }}
+            </div>
+            <div class="status-badge">{{ statusLabels[getStatut(comp.id)] }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>

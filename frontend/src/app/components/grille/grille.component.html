@@ -1,0 +1,337 @@
+<div class="grille-container">
+  <!-- Header -->
+  <div class="page-header">
+    <h1>Grille d'évaluation</h1>
+    <div class="header-actions">
+      <button mat-stroked-button color="primary" (click)="openBulkDialog()">
+        <mat-icon>playlist_add_check</mat-icon> Saisie groupée
+      </button>
+      <button mat-raised-button color="primary" (click)="openAddEleve()">
+        <mat-icon>person_add</mat-icon> Ajouter un élève
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!loading" class="grid-filters">
+    <span class="filter-label">Afficher</span>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Classe</mat-label>
+      <mat-select [(ngModel)]="classeFiltre" (ngModelChange)="onClasseFiltreChange($event)">
+        <mat-option value="">Toutes les classes</mat-option>
+        <mat-option *ngFor="let classe of classes" [value]="classe">{{ classe }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Niveau scolaire</mat-label>
+      <mat-select [(ngModel)]="niveauFiltre">
+        <mat-option value="PS">PS · avant 4 ans</mat-option>
+        <mat-option value="MS">MS · à partir de 4 ans</mat-option>
+        <mat-option value="GS">GS · à partir de 5 ans</mat-option>
+        <mat-option value="all">Tous les niveaux</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <label class="competence-search">
+      <mat-icon aria-hidden="true">search</mat-icon>
+      <input type="search" [(ngModel)]="rechercheCompetence"
+             placeholder="Rechercher une compétence, un domaine ou un objectif…"
+             aria-label="Rechercher une compétence, un domaine ou un objectif">
+      <button *ngIf="rechercheCompetence" type="button" class="clear-search"
+              aria-label="Effacer la recherche" (click)="rechercheCompetence = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </label>
+    <span class="filter-summary">
+      {{ visibleEleves.length }} élève(s) · {{ matchingCompetenceCount }} compétence(s)
+      {{ rechercheCompetence ? 'correspondant(s)' : (niveauFiltre === 'all' ? 'tous niveaux' : niveauFiltre) }}
+    </span>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <mat-progress-spinner mode="indeterminate" diameter="48"></mat-progress-spinner>
+    <p>Chargement…</p>
+  </div>
+
+  <section *ngIf="!loading" class="domain-overview" [class.overview-active]="overviewMode"
+           aria-label="Vue d’ensemble des domaines">
+    <div class="overview-heading">
+      <div>
+        <h2>Vue d’ensemble des domaines</h2>
+        <p>Évaluations renseignées · {{ visibleEleves.length }} élève(s) · {{ niveauFiltre === 'all' ? 'tous niveaux' : 'niveau ' + niveauFiltre }}</p>
+      </div>
+      <div class="overview-heading-actions">
+        <span class="overview-total">{{ matchingCompetenceCount }} compétences</span>
+        <button type="button" class="view-toggle" (click)="overviewMode = !overviewMode">
+          {{ overviewMode ? 'Grille détaillée' : 'Vue complète' }}
+        </button>
+      </div>
+    </div>
+    <div class="overview-cards">
+      <button *ngFor="let item of domainesOverview; trackBy: trackByDomaineOverview"
+              type="button" class="overview-card"
+              [class.selected]="selectedDomainIndex === item.index"
+              [disabled]="item.competences === 0"
+              [attr.aria-label]="item.domaine.nom + ', ' + item.progression + ' pour cent évalué, ouvrir le domaine'"
+              (click)="selectDomaine(item.index)">
+        <span class="overview-card-title">
+          <span class="tab-dot" [style.background]="getDomainColor(item.index).primary"></span>
+          <span>{{ item.domaine.nom }}</span>
+        </span>
+        <span class="overview-card-meta">{{ item.competences }} compétence(s) à évaluer</span>
+        <span class="overview-card-footer">
+          <strong>{{ item.progression }}%</strong>
+          <span>{{ item.evalues }} / {{ item.total }} évalués</span>
+        </span>
+      </button>
+    </div>
+    <div *ngIf="overviewMode" class="overview-grid-scroll">
+      <table class="grille-table overview-grid" cellspacing="0">
+        <thead>
+          <tr class="overview-domain-row">
+            <th class="col-eleve" rowspan="2">Élève</th>
+            <th class="col-actions" rowspan="2"></th>
+            <ng-container *ngFor="let domaine of domaines; let di = index; trackBy: trackByDomaine">
+              <th *ngIf="getVisibleCompetenceCountForDomaine(domaine) as count"
+                  [attr.colspan]="count"
+                  [style.background]="getDomainColor(di).light"
+                  [style.border-top]="'3px solid ' + getDomainColor(di).primary">
+                {{ domaine.nom }}
+              </th>
+            </ng-container>
+          </tr>
+          <tr class="header-competence">
+            <th *ngFor="let comp of competencesVisibles; trackBy: trackByCompetence"
+                class="comp-header"
+                [style.background]="getDomainColor(getDomainIndexForCompetence(comp.id)).light"
+                [matTooltip]="comp.domaineModele + ' · ' + comp.code + ' · ' + comp.libelle + (comp.description ? ' · ' + comp.description : '') + (comp.niveau ? ' (' + comp.niveau + ')' : '')">
+              <div class="comp-header-inner">
+                <span class="comp-code" [style.color]="getDomainColor(getDomainIndexForCompetence(comp.id)).primary">{{ comp.code }}</span>
+                <span class="comp-domain">{{ comp.domaineModele }}</span>
+                <span class="comp-label">{{ comp.libelle }}</span>
+                <span *ngIf="comp.niveau" class="comp-level">{{ comp.niveau }}</span>
+                <button mat-icon-button class="dup-btn"
+                        matTooltip="Dupliquer cette compétence"
+                        (click)="$event.stopPropagation(); openDuplicateDialog(comp)">
+                  <mat-icon>content_copy</mat-icon>
+                </button>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let eleve of visibleEleves; trackBy: trackByEleve" class="eleve-row">
+            <td class="eleve-name">
+              <strong>{{ eleve.prenom }}</strong> {{ eleve.nom }}
+              <span *ngIf="eleve.classe" class="classe-badge">{{ eleve.classe }}</span>
+            </td>
+            <td class="cell-actions">
+              <button mat-icon-button [matTooltip]="'Livret de ' + eleve.prenom" (click)="openLivret(eleve)">
+                <mat-icon>menu_book</mat-icon>
+              </button>
+              <button mat-icon-button [matTooltip]="'Commentaire général'" (click)="openCommentaireGlobal(eleve)">
+                <mat-icon>comment</mat-icon>
+              </button>
+            </td>
+            <td *ngFor="let comp of competencesVisibles; trackBy: trackByCompetence"
+                class="eval-cell" [ngClass]="getCellClass(eleve.id, comp.id)">
+              <button type="button" class="eval-btn"
+                      [title]="comp.libelle + (comp.description ? ' · ' + comp.description : '') + ' · ' + statusLabels[getStatut(eleve.id, comp.id)] + ' · clic droit pour commenter'"
+                      [attr.aria-label]="eleve.prenom + ' ' + eleve.nom + ', ' + comp.libelle + (comp.description ? ' · ' + comp.description : '') + ' : ' + statusLabels[getStatut(eleve.id, comp.id)]"
+                      (click)="onCellClick(eleve, comp)"
+                      (contextmenu)="onCellRightClick($event, eleve, comp)">
+                <span class="status-icon">{{ statusIcons[getStatut(eleve.id, comp.id)] }}</span>
+                <span *ngIf="getStatut(eleve.id, comp.id) === 'acquis'"
+                      class="niveau-badge"
+                      [ngClass]="'niveau-' + (getNiveau(eleve.id, comp.id) ?? 'none')">
+                  {{ getNiveau(eleve.id, comp.id) ?? '·' }}
+                </span>
+                <span *ngIf="hasComment(eleve.id, comp.id)" class="comment-dot"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="!competencesVisibles.length" class="empty-grid">Aucune compétence ne correspond aux filtres sélectionnés.</p>
+      <p *ngIf="!visibleEleves.length" class="empty-grid">Aucun élève ne correspond aux filtres sélectionnés.</p>
+    </div>
+  </section>
+
+  <mat-tab-group *ngIf="!loading && !overviewMode" [(selectedIndex)]="selectedDomainIndex" class="domain-tabs" animationDuration="150ms">
+    <mat-tab *ngFor="let domaine of domaines; let di = index; trackBy: trackByDomaine">
+
+      <ng-template mat-tab-label>
+        <span class="tab-dot" [style.background]="getDomainColor(di).primary"></span>
+        {{ domaine.nom }}
+        <span *ngIf="rechercheCompetence && getVisibleCompetenceCountForDomaine(domaine) > 0"
+              class="domain-result-count">{{ getVisibleCompetenceCountForDomaine(domaine) }}</span>
+      </ng-template>
+
+      <div class="tab-content">
+        <ng-container *ngFor="let section of getSections(domaine)">
+          <ng-container *ngIf="getVisibleCompetences(section.competences) as visibleCompetences">
+          <!-- Sub-domain label (only when there are sub-domains) -->
+          <h3 *ngIf="section.label && visibleCompetences.length" class="sousdomaine-title"
+              [style.color]="getDomainColor(di).primary">{{ section.label }}</h3>
+
+          <details *ngIf="getVisibleObjectives(section.objectifs).length" class="objectifs-reference">
+            <summary>Objectifs de référence de cette thématique</summary>
+            <ul>
+              <li *ngFor="let objectif of getVisibleObjectives(section.objectifs)">
+                <span class="objectif-level">{{ objectif.niveau }}</span>
+                {{ objectif.libelle }}
+              </li>
+            </ul>
+          </details>
+
+          <table *ngIf="visibleCompetences.length" class="grille-table" cellspacing="0">
+            <thead>
+              <tr class="header-competence">
+                <th class="col-eleve">Élève</th>
+                <th class="col-actions"></th>
+                <th *ngFor="let comp of visibleCompetences; trackBy: trackByCompetence"
+                    class="comp-header"
+                    [style.background]="getDomainColor(di).light"
+                    [matTooltip]="comp.domaineModele + ' · ' + comp.code + ' · ' + comp.libelle + (comp.description ? ' · ' + comp.description : '') + (comp.niveau ? ' (' + comp.niveau + ')' : '')">
+                  <div class="comp-header-inner">
+                    <span class="comp-code" [style.color]="getDomainColor(di).primary">{{ comp.code }}</span>
+                    <span class="comp-domain">{{ comp.domaineModele }}</span>
+                    <span class="comp-label">{{ comp.libelle }}</span>
+                    <span *ngIf="comp.niveau" class="comp-level">{{ comp.niveau }}</span>
+                    <button mat-icon-button class="dup-btn"
+                            matTooltip="Dupliquer cette compétence"
+                            (click)="$event.stopPropagation(); openDuplicateDialog(comp)">
+                      <mat-icon>content_copy</mat-icon>
+                    </button>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let eleve of visibleEleves; trackBy: trackByEleve" class="eleve-row">
+                <td class="eleve-name">
+                  <strong>{{ eleve.prenom }}</strong> {{ eleve.nom }}
+                  <span *ngIf="eleve.classe" class="classe-badge">{{ eleve.classe }}</span>
+                </td>
+                <td class="cell-actions">
+                  <button mat-icon-button [matTooltip]="'Livret de ' + eleve.prenom" (click)="openLivret(eleve)">
+                    <mat-icon>menu_book</mat-icon>
+                  </button>
+                  <button mat-icon-button [matTooltip]="'Commentaire général'" (click)="openCommentaireGlobal(eleve)">
+                    <mat-icon>comment</mat-icon>
+                  </button>
+                </td>
+                <td *ngFor="let comp of visibleCompetences; trackBy: trackByCompetence"
+                    class="eval-cell"
+                    [ngClass]="getCellClass(eleve.id, comp.id)">
+                  <button type="button" class="eval-btn"
+                          [title]="comp.libelle + (comp.description ? ' · ' + comp.description : '') + ' · ' + statusLabels[getStatut(eleve.id, comp.id)] + ' · clic droit pour commenter'"
+                          [attr.aria-label]="eleve.prenom + ' ' + eleve.nom + ', ' + comp.libelle + (comp.description ? ' · ' + comp.description : '') + ' : ' + statusLabels[getStatut(eleve.id, comp.id)]"
+                          (click)="onCellClick(eleve, comp)"
+                          (contextmenu)="onCellRightClick($event, eleve, comp)">
+                    <span class="status-icon">{{ statusIcons[getStatut(eleve.id, comp.id)] }}</span>
+                    <span *ngIf="getStatut(eleve.id, comp.id) === 'acquis'"
+                          class="niveau-badge"
+                          [ngClass]="'niveau-' + (getNiveau(eleve.id, comp.id) ?? 'none')">
+                      {{ getNiveau(eleve.id, comp.id) ?? '·' }}
+                    </span>
+                    <span *ngIf="hasComment(eleve.id, comp.id)" class="comment-dot"></span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </ng-container>
+        </ng-container>
+        <p *ngIf="getVisibleCompetenceCountForDomaine(domaine) === 0" class="empty-grid">
+          {{ rechercheCompetence ? 'Aucune compétence correspondante dans ce domaine. Regardez les autres onglets.' : 'Aucune compétence disponible dans ce domaine.' }}
+        </p>
+        <p *ngIf="visibleEleves.length === 0" class="empty-grid">Aucun élève ne correspond aux filtres sélectionnés.</p>
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+
+  <ng-template #bulkDialog>
+    <h2 mat-dialog-title>Saisie groupée de compétences</h2>
+    <mat-dialog-content class="bulk-dialog-content">
+      <p>Choisissez une compétence, un statut et les élèves concernés.</p>
+      <mat-form-field appearance="outline">
+        <mat-label>Niveau scolaire</mat-label>
+        <mat-select [(ngModel)]="bulkNiveau" (ngModelChange)="onBulkNiveauChange()" [disabled]="bulkSaving">
+          <mat-option value="PS">PS · avant 4 ans</mat-option>
+          <mat-option value="MS">MS · à partir de 4 ans</mat-option>
+          <mat-option value="GS">GS · à partir de 5 ans</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Compétence à évaluer</mat-label>
+        <mat-select [(ngModel)]="bulkCompetenceId" (ngModelChange)="onBulkCompetenceChange()" [disabled]="bulkSaving">
+          <mat-option *ngFor="let comp of bulkCompetences" [value]="comp.id">{{ comp.domaineModele }} · {{ comp.code }} — {{ comp.libelle }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Classe (facultatif)</mat-label>
+        <mat-select [ngModel]="bulkClass" (ngModelChange)="onBulkClassChange($event)" [disabled]="bulkSaving">
+          <mat-option value="">Toutes les classes</mat-option>
+          <mat-option *ngFor="let classe of classes" [value]="classe">{{ classe }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Élèves ({{ bulkEleveIds.length }} sélectionné(s))</mat-label>
+        <mat-select [(ngModel)]="bulkEleveIds" multiple [disabled]="bulkSaving">
+          <mat-option *ngFor="let eleve of bulkEleves; trackBy: trackByEleve" [value]="eleve.id">
+            {{ eleve.prenom }} {{ eleve.nom }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nouveau statut</mat-label>
+        <mat-select [(ngModel)]="bulkStatus" [disabled]="bulkSaving">
+          <mat-option *ngFor="let status of statusCycle" [value]="status">{{ statusLabels[status] }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <p class="bulk-warning">Le statut choisi remplacera le statut actuel de cette compétence pour les élèves sélectionnés.</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close [disabled]="bulkSaving">Annuler</button>
+      <button mat-raised-button color="primary" (click)="applyBulkEvaluation()"
+              [disabled]="bulkSaving || bulkCompetenceId === null || !bulkStatus || bulkEleveIds.length === 0">
+        <mat-progress-spinner *ngIf="bulkSaving" mode="indeterminate" diameter="18"></mat-progress-spinner>
+        {{ bulkSaving ? 'Enregistrement…' : 'Appliquer à ' + bulkEleveIds.length + ' élève(s)' }}
+      </button>
+    </mat-dialog-actions>
+  </ng-template>
+
+<!-- Duplicate competence dialog -->
+<ng-template #dupDialog>
+  <h2 mat-dialog-title>Dupliquer la compétence</h2>
+  <mat-dialog-content>
+    <p class="dup-hint">La nouvelle compétence sera insérée juste après l'originale.</p>
+    <mat-form-field appearance="outline" style="width:100%">
+      <mat-label>Code</mat-label>
+      <input matInput [(ngModel)]="dupForm.code">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width:100%; margin-top:8px">
+      <mat-label>Libellé (nuance)</mat-label>
+      <input matInput [(ngModel)]="dupForm.libelle">
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="false">Annuler</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">Dupliquer</button>
+  </mat-dialog-actions>
+</ng-template>
+
+  <!-- Legend -->
+  <div class="legend" *ngIf="!loading && !overviewMode">
+    <span class="legend-item status-acquis">✓ Acquis</span>
+    <span class="legend-item status-en_cours">~ En cours</span>
+    <span class="legend-item status-non_acquis">✗ Non acquis</span>
+    <span class="legend-item status-non_evalue">— Non évalué</span>
+    <span class="legend-hint">Clic : changer statut &nbsp;|&nbsp; Clic droit : commentaire</span>
+  </div>
+</div>

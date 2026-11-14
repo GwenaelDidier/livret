@@ -1,0 +1,86 @@
+Tu es un expert full-stack et UX spécialisé en apps Electron (Windows), Angular, et NestJS.
+Je veux développer une application Windows de type “bureau” permettant à des enseignants de générer des livrets d’évaluation d’élèves à partir d’une saisie de compétences via une grille.
+
+Objectif produit
+Application très ergonomique, très simple pour valider / confirmer des compétences.
+Grille de saisie :
+Lignes = élèves
+Colonnes / axes = compétences regroupées par domaine, affichées en ordonnées (par domaines).
+L’enseignant doit pouvoir :
+Valider des compétences rapidement (interaction fluide, peu de clics).
+Ajouter des commentaires (ex : sur une compétence ou sur l’élève) via un système de popups.
+À tout moment, visualiser le livret pour un élève, mais uniquement avec les compétences acquises.
+Générer un PDF du livret.
+Tech stack préférée :
+Front : Angular
+Back / API : NestJS
+Desktop : Electron (Windows)
+Contraintes/compléments :
+Prévoir la structure projet et les communications front/back dans un contexte Electron.
+Proposer une architecture robuste (modulaire, maintenable).
+Fournir une proposition de modèle de données (schéma) cohérent avec la grille (domaines/compétences/élèves/statuts/commentaires).
+Prévoir le rendu PDF (approche technique, génération côté serveur ou côté client, choix recommandé).
+Questions à traiter
+UX/UI :
+
+Propose une maquette textuelle détaillée (layout) de l’écran principal (grille) + écran/zone de visualisation du livret.
+Comment rendre la validation “très simple” (clavier, clic, toggles, raccourcis, états visuels, bulk actions éventuelles).
+Comment gérer les commentaires avec des popups (où placer, quel déclenchement, persistance, UX).
+Comment filtrer/afficher “uniquement les compétences acquises” dans le livret.
+Architecture :
+
+Décrire une architecture Electron + Angular + NestJS :
+comment l’API NestJS est utilisée (local ou intégrée),
+comment gérer sécurité/IPC si besoin,
+stockage local (fichier SQLite/JSON ou autre) vs backend.
+Proposer une organisation de code (modules Angular, modules NestJS, dossier e2e, etc.).
+Modèle de données :
+
+Proposer entités : Élève, Domaine, Compétence, Évaluation (statut acquis/non acquis), Commentaire (lié à compétence/élève), Projet/Session si nécessaire.
+Définir les relations (cardinalités) et les champs minimaux nécessaires.
+Définir un statut d’évaluation (ex : acquis / non acquis / en cours / commentaire uniquement, etc.). Choisir une logique claire.
+Génération PDF :
+
+Proposer une solution technique réaliste pour générer un PDF :
+template, rendu, bibliothèques possibles (ex : Puppeteer, pdfmake, html2canvas + conversion, templating server).
+Décrire précisément le flow : à partir des données acquises → rendu → PDF.
+Donner un schéma de template (sections par domaine, ordre, titres, etc.).
+Plan de développement :
+
+Fournir un plan en étapes (MVP → itérations) :
+Étape 1 : initialisation repo + Electron + Angular
+Étape 2 : connexion à NestJS + CRUD de base
+Étape 3 : écran grille + validation compétences
+Étape 4 : popups commentaires
+Étape 5 : visualisation livret “acquis uniquement”
+Étape 6 : génération PDF
+Étape 7 : qualité (tests, validations, sauvegarde, perf)
+Pour chaque étape : livrables, critères de réussite, risques techniques, et dépendances.
+Spécification fonctionnelle (format concret) :
+
+Lister les écrans (composants) et actions utilisateur correspondantes.
+Lister les règles métier importantes :
+validation compétence,
+commentaire obligatoire optionnel,
+visualisation livret filtrée,
+génération PDF cohérente.
+Exigences non fonctionnelles :
+
+performance grille (potentiellement beaucoup d’élèves/compétences),
+accessibilité & ergonomie,
+persistance & reprise (sauvegarde automatique),
+export/import si pertinent (optionnel).
+Contraintes de réponse
+Réponds en français.
+Donne une réponse structurée avec : Architecture → Data model → UX détaillée → PDF → Plan MVP/itérations.
+Propose aussi une “liste de tickets” (format backlog) avec estimation relative (S/M/L) pour guider le développement.
+Si des choix dépendent du contexte (ex : stockage local vs serveur), propose 2 options et recommande une solution, en expliquant brièvement pourquoi.
+Contexte initial
+Je pars de zéro et je veux un plan clair pour démarrer, en utilisant Angular + NestJS + Electron, avec une UX centrée sur la validation rapide des compétences et des popups de commentaires.
+
+Commence par poser 5 questions maximum pour lever les ambiguïtés critiques, puis continue avec la proposition complète même si ces questions ne sont pas encore répondue.
+
+Si vous voulez, je peux aussi :
+
+adapter le prompt à votre situation (stockage local souhaité, modèle de statut des compétences, format des domaines/compétences, nombre d’élèves typique),
+ou générer une version “plus courte” du prompt pour une IA moins tolérante.

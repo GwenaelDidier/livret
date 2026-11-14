@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Visualisation des objectifs du référentiel pédagogique du cycle 1 par domaine et tranche d'âge.">
+  <title>Référentiel cycle 1 — objectifs par âge</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #172b4d;
+      background: #f4f7fb;
+      font-synthesis: none;
+      --blue: #3156a4;
+      --muted: #64748b;
+      --line: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { margin: 0; min-width: 320px; }
+
+    button, input { font: inherit; }
+
+    .page { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    header {
+      padding: 48px 0 30px;
+      background: radial-gradient(ellipse at 85% 0, #dce8ff 0, transparent 42%), #fff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 { max-width: 760px; margin: 0; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.08; }
+    .intro { max-width: 720px; margin: 16px 0 0; color: #52647e; font-size: 1.05rem; line-height: 1.6; }
+
+    main { padding: 26px 0 56px; }
+
+    .load-notice {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 15px 18px;
+      margin-bottom: 22px;
+      color: #34445c;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .load-notice p { margin: 0; line-height: 1.5; }
+
+    .file-label, .print-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 15px;
+      color: #fff;
+      background: var(--blue);
+      border: 0;
+      border-radius: 9px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .file-label:hover, .print-button:hover { background: #243f80; }
+    #file-input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+    #file-input:focus-visible + .file-label { outline: 3px solid #f4bd50; outline-offset: 3px; }
+
+    .status { min-height: 1.4em; margin: -10px 0 18px; color: var(--muted); font-size: .9rem; }
+    .status.error { color: #a12e2e; }
+
+    .toolbar {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .toolbar h2 { margin: 0 0 5px; font-size: 1.15rem; }
+    .toolbar p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .toolbar-actions { display: flex; align-items: center; gap: 12px; }
+
+    .search {
+      width: min(280px, 42vw);
+      min-height: 42px;
+      padding: 0 13px;
+      color: inherit;
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+    }
+
+    .domain-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin: 0 0 22px;
+    }
+
+    .domain-button {
+      min-height: 72px;
+      padding: 13px 15px;
+      color: #334155;
+      text-align: left;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color .15s, box-shadow .15s, transform .15s;
+    }
+
+    .domain-button:hover { transform: translateY(-1px); border-color: #9aafd8; }
+    .domain-button[aria-pressed="true"] { border-color: var(--blue); box-shadow: 0 0 0 2px #3156a426; }
+    .domain-id { display: block; margin-bottom: 5px; color: var(--blue); font-size: .74rem; font-weight: 800; letter-spacing: .08em; }
+    .domain-name { display: block; font-size: .9rem; font-weight: 700; line-height: 1.35; }
+
+    .overview {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      color: #fff;
+      background: #243b70;
+      border-radius: 14px;
+    }
+
+    .overview h2 { margin: 0; font-size: 1.15rem; }
+    .overview p { margin: 5px 0 0; color: #d6e0f6; font-size: .9rem; }
+    .count { flex: 0 0 auto; text-align: right; }
+    .count strong { display: block; font-size: 1.65rem; line-height: 1; }
+    .count span { display: block; margin-top: 5px; color: #d6e0f6; font-size: .78rem; }
+
+    .age-tabs { display: flex; gap: 8px; overflow-x: auto; padding: 3px 2px 14px; }
+    .age-button {
+      flex: 1 0 160px;
+      padding: 12px 15px;
+      color: #475569;
+      text-align: left;
+      background: #e9eef6;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .age-button[aria-selected="true"] { color: #243b70; background: #fff; border-color: #b7c7e4; box-shadow: 0 2px 7px #172b4d12; }
+    .age-button strong, .age-button span { display: block; }
+    .age-button strong { font-size: .92rem; }
+    .age-button span { margin-top: 4px; color: var(--muted); font-size: .78rem; }
+
+    .age-note { margin: 0 0 18px; color: var(--muted); font-size: .85rem; line-height: 1.5; }
+
+    .theme-list { display: grid; gap: 13px; }
+
+    .theme {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+    }
+
+    .theme summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 17px 19px;
+      font-weight: 750;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .theme summary::-webkit-details-marker { display: none; }
+    .theme summary::after { content: "+"; color: var(--blue); font-size: 1.25rem; }
+    .theme[open] summary::after { content: "−"; }
+    .theme-title { line-height: 1.4; }
+    .theme-count { flex: 0 0 auto; color: var(--muted); font-size: .78rem; font-weight: 600; }
+    .objectives { padding: 0 24px 18px 42px; margin: 0; color: #3c4b60; }
+    .objectives li { padding: 6px 0 6px 3px; line-height: 1.55; }
+    .objectives li::marker { color: var(--blue); }
+    .theme-illustration {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      padding: 5px;
+      object-fit: contain;
+      background: #f1f5fb;
+      border-radius: 12px;
+    }
+    .theme-illustration[hidden] { display: none; }
+    .theme summary { justify-content: flex-start; }
+    .theme summary::after { margin-left: 12px; }
+    .theme-count { margin-left: auto; }
+    .illustration-unavailable {
+      display: grid;
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      place-items: center;
+      padding: 5px;
+      color: var(--muted);
+      text-align: center;
+      background: #f1f5fb;
+      border-radius: 12px;
+      font-size: .65rem;
+      line-height: 1.2;
+    }
+    .illustration-credit {
+      padding: 0 24px 17px 42px;
+      color: var(--muted);
+      font-size: .76rem;
+      line-height: 1.45;
+    }
+    .illustration-credit a { margin-left: 5px; }
+    .empty { padding: 24px; color: var(--muted); text-align: center; background: #fff; border: 1px dashed #cbd5e1; border-radius: 12px; }
+
+    .source-note {
+      padding: 18px 20px;
+      margin-top: 24px;
+      color: #52647e;
+      background: #eaf0f9;
+      border-radius: 12px;
+      font-size: .86rem;
+      line-height: 1.55;
+    }
+
+    .source-note p { margin: 0; }
+    .source-note p + p { margin-top: 8px; }
+    a { color: #25488e; }
+    footer { padding: 18px 0 28px; color: var(--muted); font-size: .8rem; }
+
+    @media (max-width: 700px) {
+      .page { width: min(100% - 28px, 1120px); }
+      header { padding: 35px 0 25px; }
+      .load-notice, .toolbar { align-items: stretch; flex-direction: column; }
+      .toolbar-actions { align-items: stretch; }
+      .search { width: 100%; }
+      .print-button { flex: 0 0 auto; }
+      .overview { align-items: flex-start; }
+      .theme summary { align-items: flex-start; padding: 15px; }
+      .objectives { padding-left: 35px; padding-right: 17px; }
+      .illustration-credit { padding-left: 35px; padding-right: 17px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      header { padding: 15px 0; background: #fff; }
+      main { padding-top: 10px; }
+      .load-notice, .status, .toolbar-actions, .domain-list, .age-tabs, footer { display: none !important; }
+      .theme { break-inside: avoid; }
+      .theme:not([open]) .objectives { display: block; }
+      .theme summary::after { display: none; }
+      .source-note { background: #fff; border: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="page">
+      <p class="eyebrow">Référentiel pédagogique · Cycle 1 · 2026–2027</p>
+      <h1>Les apprentissages, par domaine et par âge</h1>
+      <p class="intro">Explorez les objectifs du programme de l’école maternelle, regroupés par domaine et par palier d’âge. Choisissez un domaine, puis une tranche d’âge pour afficher les objectifs correspondants.</p>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="load-notice" aria-label="Chargement des données">
+      <p id="load-message">Chargement du référentiel pédagogique…</p>
+      <div>
+        <input id="file-input" type="file" accept=".json,application/json" aria-label="Choisir le fichier JSON du référentiel">
+        <label class="file-label" for="file-input">Charger un fichier JSON</label>
+      </div>
+    </section>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+
+    <section id="app" hidden>
+      <div class="toolbar">
+        <div>
+          <h2>Choisir un domaine</h2>
+          <p id="domain-hint">Sélectionnez un domaine pour explorer ses objectifs.</p>
+        </div>
+        <div class="toolbar-actions">
+          <label>
+            <span class="sr-only">Rechercher dans les objectifs</span>
+            <input id="search" class="search" type="search" placeholder="Rechercher un objectif…" autocomplete="off">
+          </label>
+          <button class="print-button" id="print" type="button">Imprimer</button>
+        </div>
+      </div>
+
+      <nav class="domain-list" id="domain-list" aria-label="Domaines d’apprentissage"></nav>
+
+      <section aria-live="polite">
+        <div class="overview">
+          <div>
+            <h2 id="selected-domain"></h2>
+            <p id="selected-domain-detail"></p>
+          </div>
+          <div class="count"><strong id="objective-count">0</strong><span>objectifs affichés</span></div>
+        </div>
+
+        <div class="age-tabs" id="age-tabs" role="tablist" aria-label="Tranche d’âge"></div>
+        <p class="age-note" id="age-note"></p>
+        <div class="theme-list" id="theme-list"></div>
+      </section>
+
+      <aside class="source-note">
+        <p><strong>Comment lire ces repères ?</strong> Les âges et correspondances PS/MS/GS sont indicatifs : le programme s’appuie sur l’âge et les acquis observés, pas sur une affectation rigide à une classe. Les formulations sont des synthèses pédagogiques ; les exemples de réussite ne sont pas exhaustifs.</p>
+        <p>Source : <span id="source-name"></span> · <a id="source-link" target="_blank" rel="noopener noreferrer">Consulter le document source</a></p>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="page">Référentiel cycle 1 · Année scolaire 2026–2027</footer>
+
+  <script>
+    (() => {
+      const ageBands = [
+        { id: "avant_4_ans", title: "Avant 4 ans", school: "Repère indicatif : PS" },
+        { id: "a_partir_4_ans", title: "À partir de 4 ans", school: "Repère indicatif : MS" },
+        { id: "a_partir_5_ans", title: "À partir de 5 ans", school: "Repère indicatif : GS" }
+      ];
+
+      const elements = {
+        app: document.getElementById("app"),
+        fileInput: document.getElementById("file-input"),
+        loadMessage: document.getElementById("load-message"),
+        status: document.getElementById("status"),
+        domainList: document.getElementById("domain-list"),
+        selectedDomain: document.getElementById("selected-domain"),
+        selectedDomainDetail: document.getElementById("selected-domain-detail"),
+        objectiveCount: document.getElementById("objective-count"),
+        ageTabs: document.getElementById("age-tabs"),
+        ageNote: document.getElementById("age-note"),
+        themeList: document.getElementById("theme-list"),
+        search: document.getElementById("search"),
+        sourceName: document.getElementById("source-name"),
+        sourceLink: document.getElementById("source-link")
+      };
+
+      let referential;
+      let selectedDomainId;
+      let selectedAgeId = ageBands[0].id;
+
+      function showStatus(message, isError = false) {
+        elements.status.textContent = message;
+        elements.status.classList.toggle("error", isError);
+      }
+
+      function validateReferential(data) {
+        if (!data || !Array.isArray(data.domaines) || !data.domaines.length) {
+          throw new Error("Le fichier ne contient pas la liste des domaines attendue.");
+        }
+        for (const domain of data.domaines) {
+          if (!domain.id || !domain.nom_officiel || !Array.isArray(domain.thematiques)) {
+            throw new Error("Un domaine du fichier est incomplet ou mal formé.");
+          }
+          for (const theme of domain.thematiques) {
+            if (!theme.nom || !theme.objectifs || typeof theme.objectifs !== "object") {
+              throw new Error("Une thématique du fichier est incomplète ou mal formée.");
+            }
+            for (const age of ageBands) {
+              if (!Array.isArray(theme.objectifs[age.id]) || !theme.objectifs[age.id].every(item => typeof item === "string")) {
+                throw new Error(`La thématique « ${theme.nom} » ne contient pas une liste d’objectifs valide pour « ${age.title} ».`);
+              }
+            }
+          }
+        }
+      }
+
+      function loadReferential(data) {
+        validateReferential(data);
+        referential = data;
+        selectedDomainId = data.domaines[0].id;
+        selectedAgeId = ageBands[0].id;
+        elements.search.value = "";
+        elements.app.hidden = false;
+        elements.loadMessage.textContent = "Référentiel chargé.";
+        elements.sourceName.textContent = data.referentiel?.source_principale?.organisme || "Référentiel pédagogique du cycle 1";
+        const sourceUrl = data.referentiel?.source_principale?.url;
+        if (sourceUrl) {
+          elements.sourceLink.href = sourceUrl;
+          elements.sourceLink.hidden = false;
+        } else {
+          elements.sourceLink.hidden = true;
+        }
+        render();
+        showStatus(`${data.domaines.length} domaines chargés.`);
+      }
+
+      function makeButton(text, className, attributes = {}) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = className;
+        button.textContent = text;
+        for (const [name, value] of Object.entries(attributes)) button.setAttribute(name, value);
+        return button;
+      }
+
+      function render() {
+        if (!referential) return;
+        const domain = referential.domaines.find(item => item.id === selectedDomainId);
+        if (!domain) return;
+        const band = ageBands.find(item => item.id === selectedAgeId);
+        const query = elements.search.value.trim().toLocaleLowerCase("fr");
+
+        elements.domainList.replaceChildren();
+        for (const item of referential.domaines) {
+          const button = makeButton("", "domain-button", {
+            "aria-pressed": String(item.id === selectedDomainId)
+          });
+          const id = document.createElement("span");
+          id.className = "domain-id";
+          id.textContent = item.id;
+          const name = document.createElement("span");
+          name.className = "domain-name";
+          name.textContent = item.nom_officiel;
+          button.append(id, name);
+          button.addEventListener("click", () => {
+            selectedDomainId = item.id;
+            render();
+          });
+          elements.domainList.append(button);
+        }
+
+        elements.selectedDomain.textContent = `${domain.id} · ${domain.nom_officiel}`;
+        elements.selectedDomainDetail.textContent = `${domain.thematiques.length} thématique${domain.thematiques.length > 1 ? "s" : ""} dans ce domaine`;
+        elements.ageTabs.replaceChildren();
+        for (const item of ageBands) {
+          const button = makeButton("", "age-button", {
+            role: "tab",
+            "aria-selected": String(item.id === selectedAgeId),
+            "aria-controls": "theme-list"
+          });
+          const title = document.createElement("strong");
+          title.textContent = item.title;
+          const school = document.createElement("span");
+          school.textContent = item.school;
+          button.append(title, school);
+          button.addEventListener("click", () => {
+            selectedAgeId = item.id;
+            render();
+          });
+          elements.ageTabs.append(button);
+        }
+
+        elements.ageNote.textContent = `${band.title} — ${band.school}. Les acquis des paliers précédents peuvent aussi être observés à cet âge.`;
+        elements.themeList.replaceChildren();
+        let total = 0;
+
+        for (const theme of domain.thematiques) {
+          const objectives = theme.objectifs[selectedAgeId].filter(item => item.toLocaleLowerCase("fr").includes(query));
+          if (!objectives.length) continue;
+          total += objectives.length;
+
+          const details = document.createElement("details");
+          details.className = "theme";
+          details.open = query.length > 0;
+          const summary = document.createElement("summary");
+          const illustration = theme.illustration;
+          if (illustration && typeof illustration.url_source === "string" && illustration.url_source.startsWith("https://")) {
+            const image = document.createElement("img");
+            image.className = "theme-illustration";
+            image.src = illustration.url_source;
+            image.alt = illustration.description || `Illustration : ${theme.nom}`;
+            image.loading = "lazy";
+            image.referrerPolicy = "no-referrer";
+            image.addEventListener("error", () => {
+              const fallback = document.createElement("span");
+              fallback.className = "illustration-unavailable";
+              fallback.textContent = "Illustration indisponible";
+              fallback.setAttribute("role", "img");
+              fallback.setAttribute("aria-label", image.alt);
+              image.replaceWith(fallback);
+            }, { once: true });
+            summary.append(image);
+          }
+          const title = document.createElement("span");
+          title.className = "theme-title";
+          title.textContent = theme.nom;
+          const count = document.createElement("span");
+          count.className = "theme-count";
+          count.textContent = `${objectives.length} objectif${objectives.length > 1 ? "s" : ""}`;
+          summary.append(title, count);
+
+          const list = document.createElement("ul");
+          list.className = "objectives";
+          for (const objective of objectives) {
+            const row = document.createElement("li");
+            row.textContent = objective;
+            list.append(row);
+          }
+          details.append(summary, list);
+          if (illustration?.attribution) {
+            const credit = document.createElement("div");
+            credit.className = "illustration-credit";
+            credit.append(document.createTextNode(`Illustration : ${illustration.attribution}`));
+            if (typeof illustration.url_licence === "string" && illustration.url_licence.startsWith("https://")) {
+              const link = document.createElement("a");
+              link.href = illustration.url_licence;
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+              link.textContent = `Licence ${illustration.licence || ""}`.trim();
+              credit.append(link);
+            }
+            details.append(credit);
+          }
+          elements.themeList.append(details);
+        }
+
+        elements.objectiveCount.textContent = String(total);
+        if (!total) {
+          const empty = document.createElement("div");
+          empty.className = "empty";
+          empty.textContent = query ? "Aucun objectif ne correspond à cette recherche dans ce domaine et cette tranche d’âge." : "Aucun objectif n’est renseigné pour ce domaine et cette tranche d’âge.";
+          elements.themeList.append(empty);
+        }
+      }
+
+      elements.fileInput.addEventListener("change", async event => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        try {
+          loadReferential(JSON.parse(await file.text()));
+        } catch (error) {
+          showStatus(`Impossible de charger le fichier : ${error.message}`, true);
+        }
+      });
+
+      elements.search.addEventListener("input", render);
+      document.getElementById("print").addEventListener("click", () => window.print());
+
+      fetch("../data/referentiel-cycle-1-2026-2027-illustre.json")
+        .then(response => {
+          if (!response.ok) throw new Error(`Réponse HTTP ${response.status}`);
+          return response.json();
+        })
+        .then(loadReferential)
+        .catch(() => {
+          elements.loadMessage.textContent = "Sélectionnez le fichier JSON du référentiel pour afficher les objectifs. Si la page est ouverte directement depuis votre ordinateur, le navigateur demande de choisir le fichier.";
+          showStatus("Le chargement automatique n’est pas disponible. Cliquez sur « Charger un fichier JSON ».", true);
+        });
+    })();
+  </script>
+</body>
+</html>
